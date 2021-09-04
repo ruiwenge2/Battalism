@@ -1,0 +1,1 @@
+- maybe use overflow hidden and scrollto for canvas?
