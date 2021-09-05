@@ -3,7 +3,10 @@ const app = express();
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
 
-const users = {};
+const socketfunc = require("./game/socketfunction");
+
+global.io = io;
+global.users = {};
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
@@ -14,11 +17,7 @@ app.get("/game/:room", (req, res) => {
   res.sendFile(__dirname + "/public/game.html");
 });
 
-io.on("connection", socket => {
-  io.on("disconnect", () => {
-    
-  });
-});
+io.on("connection", socketfunc);
 
 server.listen(3000, () => {
   console.log("server started");

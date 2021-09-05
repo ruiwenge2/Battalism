@@ -1,0 +1,10 @@
+#canvas {
+  background-image:url(/img/block.png);
+  background-size:75px 75px;
+}
+#message {
+  font-size:20px;
+  opacity:0;
+  transition:3s;
+  position:absolute;
+}
