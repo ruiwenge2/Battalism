@@ -1,5 +1,13 @@
 {
   "files": {
+    ".breakpoints": [
+      {
+        "id": "8aadac7b-d0f4-4922-a4e3-81f501962b03",
+        "line": 1,
+        "version": 0,
+        "index": 0
+      }
+    ],
     "game/room.js": [
       {
         "id": "bd0b7db3-292f-4288-9d9d-f601a2457136",
