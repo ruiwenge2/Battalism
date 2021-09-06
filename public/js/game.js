@@ -1,7 +1,11 @@
-import { showMessage } from "./functions.js";
-
 const room = location.href.split("/game/")[1];
 const user = localStorage.getItem("username");
+if(!user){
+  alertmodal("", "Please enter a username").then(() => location.href = "/");
+}
+const socket = io();
+
+socket.emit("check", user, room);
 
 const canvas = document.getElementById("canvas");
 const c = canvas.getContext("2d");
@@ -9,7 +13,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 var x = 0;
 var y = 200;
-var change = 9;
+var change = 11;
 
 c.beginPath();
 c.arc(x, y, 37.5, 0, 2 * Math.PI);

@@ -1,5 +1,5 @@
 const socketfunc = socket => {
-  socket.on("checkusername", (user, room) => {
+  socket.on("check", (user, room) => {
     
   });
   socket.on("disconnect", () => {

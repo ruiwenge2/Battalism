@@ -9,4 +9,3 @@ function showMessage(message, time){
     }, time * 1000);
   });
 }
-export { showMessage };

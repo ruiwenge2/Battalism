@@ -4,6 +4,7 @@ const server = require("http").Server(app);
 const io = require("socket.io")(server);
 
 const socketfunc = require("./game/socketfunction");
+const update = require("./game/update");
 
 global.io = io;
 global.users = {};
@@ -19,6 +20,4 @@ app.get("/game/:room", (req, res) => {
 
 io.on("connection", socketfunc);
 
-server.listen(3000, () => {
-  console.log("server started");
-});
+server.listen(3000);
