@@ -1,3 +1,5 @@
+const Room = require("./room");
+
 const socketfunc = socket => {
   socket.on("check", (user, room) => {
     

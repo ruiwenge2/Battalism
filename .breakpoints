@@ -1,3 +1,12 @@
 {
-  "files": {}
+  "files": {
+    "game/room.js": [
+      {
+        "id": "bd0b7db3-292f-4288-9d9d-f601a2457136",
+        "line": 1,
+        "version": 116,
+        "index": 0
+      }
+    ]
+  }
 }
