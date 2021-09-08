@@ -7,6 +7,10 @@ const socket = io();
 
 socket.emit("check", user, room);
 
+socket.on("gamestate", obj => {
+  console.log(obj)
+});
+
 const canvas = document.getElementById("canvas");
 const c = canvas.getContext("2d");
 canvas.width = window.innerWidth;
@@ -18,6 +22,7 @@ var change = 11;
 c.beginPath();
 c.arc(x, y, 37.5, 0, 2 * Math.PI);
 c.stroke();
+
 
 document.addEventListener("keydown", e => {
   if(e.key == "ArrowRight" || e.key == "d"){
