@@ -16,18 +16,11 @@ const socketfunc = socket => {
     } else {
       socket.join(room);
       let id = socket.id;
-      global.users[room].players.push({
-        id:id,
-        name:user,
-        x:0,
-        y:200,
-        weapon:null,
-        health:100
-      })
+      global.users[room].addPlayer(id, user);
       socket.emit("usernamevalid");
       socket.broadcast.to(room).emit("joined", user);
     }
-    console.log(global.users);
+    console.log(global.users[room]);
   });
   socket.on("disconnect", () => {
     
