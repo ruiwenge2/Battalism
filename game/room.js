@@ -13,5 +13,8 @@ class Room {
       health:100
     });
   }
+  removePlayer(id){
+    
+  }
 }
 module.exports = Room;

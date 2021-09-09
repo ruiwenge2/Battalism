@@ -1,5 +1,5 @@
 const Room = require("./room");
-const { random } = require("../functions");
+const { random, getUser } = require("../functions");
 
 const socketfunc = socket => {
   socket.on("check", (user, room) => {
@@ -16,6 +16,7 @@ const socketfunc = socket => {
     } else {
       socket.join(room);
       let id = socket.id;
+      console.log(global.users[room].players);
       global.users[room].addPlayer(id, user);
       socket.emit("usernamevalid");
       socket.broadcast.to(room).emit("joined", user);
