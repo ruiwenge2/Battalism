@@ -1,7 +1,9 @@
-class Room {
-  constructor(){
-    this.players = [];
+const { random, getUser } = require("../functions");
 
+class Room {
+  constructor(room){
+    this.players = [];
+    this.room = room;
   }
   addPlayer(id, user){
     this.players.push({
@@ -14,7 +16,7 @@ class Room {
     });
   }
   removePlayer(id){
-    
+    this.players.splice(getUser(this.room, id), 1);
   }
 }
 module.exports = Room;

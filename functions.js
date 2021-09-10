@@ -13,7 +13,18 @@ function getUser(room, id){
   }
 }
 
+function getRoomOfUser(id){
+  for(room of Object.keys(global.users)){
+    for(info of global.users[room].players){
+      if(info.id == id){
+        return room;
+      }
+    }
+  }
+}
+
 module.exports = {
   random:random,
-  getUser:getUser
+  getUser:getUser,
+  getRoomOfUser:getRoomOfUser
 }
