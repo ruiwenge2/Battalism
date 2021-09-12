@@ -11,6 +11,7 @@ global.io = io;
 global.users = {};
 global.max = 6;
 global.speed = 11;
+global.radius = 37.5;
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");

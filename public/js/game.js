@@ -2,7 +2,7 @@ if(!user){
   alertmodal("", "Please enter a username").then(() => location.href = "/");
 }
 
-socket.emit("check", user, room);
+socket.emit("check", user, room, canvas.width, canvas.height);
 
 socket.on("gamestate", update);
 
@@ -26,6 +26,5 @@ document.addEventListener("keydown", e => {
   }
   c.clearRect(0, 0, canvas.width, canvas.height);
   c.beginPath();
-  c.arc(x, y, 37.5, 0, 2 * Math.PI);
   c.stroke();
 });

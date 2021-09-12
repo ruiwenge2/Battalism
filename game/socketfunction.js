@@ -2,7 +2,7 @@ const Room = require("./room");
 const { random, getUser, getRoomOfUser, checkUsername, userInRooms } = require("../functions");
 
 const socketfunc = socket => {
-  socket.on("check", (user, room) => {
+  socket.on("check", (user, room, width, height) => {
     if(!(room in users)){
       users[room] = new Room(room);
     }
@@ -16,7 +16,7 @@ const socketfunc = socket => {
     } else {
       socket.join(room);
       let id = socket.id;
-      users[room].addPlayer(id, user);
+      users[room].addPlayer(id, user, width, height);
       console.log(users[room].players[getUser(room, id)]);
       socket.emit("error", false);
       socket.broadcast.to(room).emit("joined", user);

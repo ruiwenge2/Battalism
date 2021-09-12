@@ -1,4 +1,5 @@
 const { random, getUser } = require("../functions");
+const { checkLeft, checkRight, checkTop, checkBottom } = require("./move");
 
 class Room {
   constructor(room){
@@ -6,14 +7,16 @@ class Room {
     this.room = room;
     this.rocks = [];
   }
-  addPlayer(id, user){
+  addPlayer(id, user, width, height){
     this.players.push({
       id:id,
       name:user,
       x:0,
       y:200,
       weapon:null,
-      health:100
+      health:100,
+      cwidth:width,
+      cheight:height
     });
   }
   removePlayer(id){
@@ -23,22 +26,21 @@ class Room {
     
   }
   move(direction, id){
-      console.log(direction);
+    console.log(direction);
     switch(direction){
       case "right":
-        this.players[getUser(this.room, id)].x += speed;
+        if(checkRight(this.room, id)) this.players[getUser(this.room, id)].x += speed;
         break;
       case "left":
-        this.players[getUser(this.room, id)].x -= speed;
+        if(checkLeft(this.room, id)) this.players[getUser(this.room, id)].x -= speed;
         break;
       case "up":
-        this.players[getUser(this.room, id)].y -= speed;
+        if(checkTop(this.room, id)) this.players[getUser(this.room, id)].y -= speed;
         break;
       case "down":
-        this.players[getUser(this.room, id)].y += speed;
+        if(checkBottom(this.room, id)) this.players[getUser(this.room, id)].y += speed;
         break;
     }
-    // console.log(this);
   }
 }
 module.exports = Room;
