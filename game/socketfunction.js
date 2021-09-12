@@ -1,33 +1,39 @@
 const Room = require("./room");
-const { random, getUser, getRoomOfUser } = require("../functions");
+const { random, getUser, getRoomOfUser, checkUsername, userInRooms } = require("../functions");
 
 const socketfunc = socket => {
   socket.on("check", (user, room) => {
-    if(!(room in global.users)){
-      global.users[room] = new Room(room);
+    if(!(room in users)){
+      users[room] = new Room(room);
     }
-    if(global.users[room].players.length >= 6){
+    if(users[room].players.length >= max){
       socket.emit("error", "There are already 6 users in this room, so please join another.");
       console.log("error");
       return;
     }
-    if(user in global.users[room].players){
-      socket.emit("error", "Your username has been taken in this room");
+    if(!true){
+      socket.emit("error", "Your username has been taken in this room.");
     } else {
       socket.join(room);
       let id = socket.id;
-      global.users[room].addPlayer(id, user);
-      console.log(global.users[room].players[getUser(room, id)]);
-      socket.emit("usernamevalid");
+      users[room].addPlayer(id, user);
+      console.log(users[room].players[getUser(room, id)]);
+      socket.emit("error", false);
       socket.broadcast.to(room).emit("joined", user);
-    console.log(global.users);
+      console.log(users);
     }
-    console.log(global.users[room]);
+    console.log(users[room]);
   });
+
+  socket.on("move", (direction, room) => {
+    users[room].move(direction, socket.id);
+  });
+
   socket.on("disconnect", () => {
+    if(!userInRooms(socket.id)) return;
     console.log("left");
-    global.users[getRoomOfUser(socket.id)].removePlayer(socket.id);
-    console.log(global.users);
+    users[getRoomOfUser(socket.id)].removePlayer(socket.id);
+    console.log(users);
   });
 }
 

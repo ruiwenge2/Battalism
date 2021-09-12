@@ -10,9 +10,14 @@ const update = require("./game/update");
 global.io = io;
 global.users = {};
 global.max = 6;
+global.speed = 11;
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
+});
+
+app.get("/game", (req, res) => {
+  res.redirect("/");
 });
 
 app.get("/game/:room", (req, res) => {

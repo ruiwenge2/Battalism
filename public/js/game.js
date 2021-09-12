@@ -1,41 +1,28 @@
-const room = location.href.split("/game/")[1];
-const user = localStorage.getItem("username");
 if(!user){
   alertmodal("", "Please enter a username").then(() => location.href = "/");
 }
-const socket = io();
 
 socket.emit("check", user, room);
 
-socket.on("gamestate", obj => {
-  console.log(obj)
+socket.on("gamestate", update);
+
+socket.on("error", err => {
+  if(!err) return;
+  else alertmodal("", err);
 });
-
-const canvas = document.getElementById("canvas");
-const c = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-var x = 0;
-var y = 200;
-var change = 11;
-
-c.beginPath();
-c.arc(x, y, 37.5, 0, 2 * Math.PI);
-c.stroke();
-
 
 document.addEventListener("keydown", e => {
   if(e.key == "ArrowRight" || e.key == "d"){
-    x += change;
+    socket.emit("move", "right", room);
   }
   else if(e.key == "ArrowLeft" || e.key == "a"){
-    x -= change;
+    socket.emit("move", "left", room);
   }
   else if(e.key == "ArrowUp" || e.key == "w"){
-    y -= change;
+    socket.emit("move", "up", room);
   }
   else if(e.key == "ArrowDown" || e.key == "s"){
-    y += change;
+    socket.emit("move", "down", room);
   }
   c.clearRect(0, 0, canvas.width, canvas.height);
   c.beginPath();

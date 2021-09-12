@@ -4,6 +4,7 @@ class Room {
   constructor(room){
     this.players = [];
     this.room = room;
+    this.rocks = [];
   }
   addPlayer(id, user){
     this.players.push({
@@ -17,6 +18,27 @@ class Room {
   }
   removePlayer(id){
     this.players.splice(getUser(this.room, id), 1);
+  }
+  generateRocks(){
+    
+  }
+  move(direction, id){
+      console.log(direction);
+    switch(direction){
+      case "right":
+        this.players[getUser(this.room, id)].x += speed;
+        break;
+      case "left":
+        this.players[getUser(this.room, id)].x -= speed;
+        break;
+      case "up":
+        this.players[getUser(this.room, id)].y -= speed;
+        break;
+      case "down":
+        this.players[getUser(this.room, id)].y += speed;
+        break;
+    }
+    // console.log(this);
   }
 }
 module.exports = Room;
