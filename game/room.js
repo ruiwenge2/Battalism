@@ -11,8 +11,8 @@ class Room {
     this.players.push({
       id:id,
       name:user,
-      x:radius,
-      y:200,
+      x:random(radius, width),
+      y:random(radius, height),
       weapon:null,
       health:100,
       cwidth:width,

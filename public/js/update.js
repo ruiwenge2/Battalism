@@ -7,5 +7,8 @@ function update(data){
     c.fillStyle = "black";
     c.fill();
     c.stroke();
+    c.fillStyle = "white";
+    c.font = "14px Arial";
+    c.fillText(info.name, info.x - info.name.length * 3, info.y);
   }
 }
