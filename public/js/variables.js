@@ -8,3 +8,4 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 const speed = 11;
+const radius = 37.5;

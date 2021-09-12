@@ -11,7 +11,7 @@ class Room {
     this.players.push({
       id:id,
       name:user,
-      x:0,
+      x:radius,
       y:200,
       weapon:null,
       health:100,
