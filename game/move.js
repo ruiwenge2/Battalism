@@ -1,4 +1,4 @@
-const { getUser } = require("../functions")
+const { getUser } = require("./functions")
 
 module.exports.checkLeft = function(room, id){
   var info = users[room].players[getUser(room, id)];

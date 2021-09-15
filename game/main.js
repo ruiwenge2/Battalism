@@ -4,8 +4,10 @@ const server = require("http").Server(app);
 const io = require("socket.io")(server);
 app.use(express.static("public"));
 
-const socketfunc = require("./game/socketfunction");
-const update = require("./game/update");
+const socketfunc = require("./socketfunction");
+const update = require("./update");
+const { Sword, Arrow, updateWeapons} = require("./weapon");
+var __dirname = "/home/runner/Game";
 
 global.io = io;
 global.users = {};
@@ -15,6 +17,7 @@ global.radius = 37.5;
 global.min_rock_size = 20;
 global.max_rock_size = 100;
 global.rock_boundary = 1200;
+global.arrow_speed = 20;
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");

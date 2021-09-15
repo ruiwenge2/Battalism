@@ -1,2 +1,2 @@
 language = "nodejs"
-run = "node app"
+run = "node game/main"

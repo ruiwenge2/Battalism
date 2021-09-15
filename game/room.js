@@ -1,4 +1,4 @@
-const { random, getUser } = require("../functions");
+const { random, getUser } = require("./functions");
 const { checkLeft, checkRight, checkTop, checkBottom } = require("./move");
 
 class Room {
