@@ -6,7 +6,7 @@ app.use(express.static("public"));
 
 const socketfunc = require("./socketfunction");
 const update = require("./update");
-const { Sword, Arrow, updateWeapons} = require("./weapon");
+const { Sword, Arrow, updateWeapons } = require("./weapon");
 var __dirname = "/home/runner/Game";
 
 global.io = io;
