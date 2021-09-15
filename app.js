@@ -12,6 +12,9 @@ global.users = {};
 global.max = 6;
 global.speed = 11;
 global.radius = 37.5;
+global.min_rock_size = 20;
+global.max_rock_size = 100;
+global.rock_boundary = 1200;
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");

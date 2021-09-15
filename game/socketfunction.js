@@ -5,6 +5,7 @@ const socketfunc = socket => {
   socket.on("check", (user, room, width, height) => {
     if(!(room in users)){
       users[room] = new Room(room);
+      users[room].generateRocks();
     }
     if(users[room].players.length >= max){
       socket.emit("error", "There are already 6 users in this room, so please join another.");

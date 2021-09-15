@@ -23,7 +23,12 @@ class Room {
     this.players.splice(getUser(this.room, id), 1);
   }
   generateRocks(){
-    
+    for(let i = 0; i < random(5, 20); i++){
+      let size = random(min_rock_size / 2, max_rock_size / 2);
+      let x = random(size, rock_boundary - size);
+      let y = random(size, rock_boundary - size);
+      this.rocks.push([x, y, size]);
+    }
   }
   move(direction, id){
     console.log(direction);
