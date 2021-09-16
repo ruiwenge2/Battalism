@@ -1,12 +1,15 @@
 class Sword {
-  constructor(){
+  constructor(room, user){
+    this.user = user;
 
   }
 }
 
 class Arrow {
-  constructor(){
-    
+  constructor(room, user, x, y){
+    this.user = user;
+    this.x = x;
+    this.y = y;
   }
 }
 
@@ -15,6 +18,14 @@ module.exports = {
   Arrow:Arrow
 }
 
-module.exports.updateWeapons = function(){
+module.exports.updateWeapons = function(room){
   
+}
+
+function checkSwordForHits(room, sword){
+
+}
+
+function checkArrowForHits(room, arrow){
+
 }

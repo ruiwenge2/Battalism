@@ -2,22 +2,29 @@ const Room = require("./room");
 const { random, getUser, getRoomOfUser, checkUsername, userInRooms } = require("./functions");
 
 const socketfunc = socket => {
-  socket.on("check", (user, room, width, height) => {
+  socket.on("check", (user, room, weapon, width, height) => {
     if(!(room in users)){
       users[room] = new Room(room);
       users[room].generateRocks();
     }
-    if(users[room].players.length >= max){
-      socket.emit("error", "There are already 6 users in this room, so please join another.");
-      console.log("error");
+    if(!user){
+      socket.emit("error", "Please enter a username.");
       return;
     }
-    if(!true){
+    if(!(weapon in weapon_limits)){
+      socket.emit("error", "Invalid weapon.");
+      return;
+    }
+    if(users[room].players.length >= max){
+      socket.emit("error", "There are already 6 users in this room, so please join another.");
+      return;
+    }
+    if(!true){ // for now
       socket.emit("error", "Your username has been taken in this room.");
     } else {
       socket.join(room);
       let id = socket.id;
-      users[room].addPlayer(id, user, width, height);
+      users[room].addPlayer(id, user, weapon, width, height);
       console.log(users[room].players[getUser(room, id)]);
       socket.emit("error", false);
       socket.broadcast.to(room).emit("joined", user);

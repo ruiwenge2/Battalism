@@ -1,14 +1,10 @@
-if(!user){
-  alertmodal("", "Please enter a username").then(() => location.href = "/");
-}
-
-socket.emit("check", user, room, canvas.width, canvas.height);
+socket.emit("check", user, room, weapon, canvas.width, canvas.height);
 
 socket.on("gamestate", update);
 
 socket.on("error", err => {
   if(!err) return;
-  else alertmodal("", err);
+  else alertmodal("", err).then(() => location.href = "/");
 });
 
 document.addEventListener("keydown", e => {
@@ -24,7 +20,7 @@ document.addEventListener("keydown", e => {
   else if(e.key == "ArrowDown" || e.key == "s"){
     socket.emit("move", "down", room);
   }
-  c.clearRect(0, 0, canvas.width, canvas.height);
-  c.beginPath();
-  c.stroke();
+  else if(e.key == "Space"){
+    socket.emit("useweapon");
+  }
 });

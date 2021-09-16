@@ -18,6 +18,11 @@ global.min_rock_size = 20;
 global.max_rock_size = 100;
 global.rock_boundary = 1200;
 global.arrow_speed = 20;
+global.sword_length = 30;
+global.weapon_limits = {
+  sword:12,
+  arrow:15
+}
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");

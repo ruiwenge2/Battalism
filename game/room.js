@@ -1,22 +1,25 @@
 const { random, getUser } = require("./functions");
 const { checkLeft, checkRight, checkTop, checkBottom } = require("./move");
 
+
 class Room {
   constructor(room){
     this.players = [];
     this.room = room;
     this.rocks = [];
   }
-  addPlayer(id, user, width, height){
+  addPlayer(id, user, weapon, width, height){
     this.players.push({
       id:id,
       name:user,
       x:random(radius, width - radius),
       y:random(radius, height - radius),
-      weapon:null,
+      weapon:weapon,
       health:100,
       cwidth:width,
-      cheight:height
+      cheight:height,
+      direction:"up",
+      times:weapon_limits[weapon]
     });
   }
   removePlayer(id){
@@ -31,7 +34,7 @@ class Room {
     }
   }
   move(direction, id){
-    console.log(direction);
+    this.players[getUser(this.room, id)].direction = direction;
     switch(direction){
       case "right":
         if(checkRight(this.room, id)) this.players[getUser(this.room, id)].x += speed;
