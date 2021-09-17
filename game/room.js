@@ -1,4 +1,4 @@
-const { random, getUser } = require("./functions");
+const { random, getUser, randomDirection } = require("./functions");
 const { checkLeft, checkRight, checkTop, checkBottom } = require("./move");
 
 
@@ -18,7 +18,7 @@ class Room {
       health:100,
       cwidth:width,
       cheight:height,
-      direction:"up",
+      direction:randomDirection(),
       times:weapon_limits[weapon]
     });
   }

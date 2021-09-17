@@ -1,0 +1,5 @@
+- work on weapons
+  - when player presses space use the weapons
+  - there's a weapon limit
+  - make arrows move a certain speed every millesecond
+  - when player uses sword show the sword for about 1 second

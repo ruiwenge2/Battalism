@@ -39,3 +39,8 @@ module.exports.userInRooms = function(id){
   }
   return false;
 }
+
+module.exports.randomDirection = function(){
+  let directions = ["left", "right", "up", "down"];
+  return directions[module.exports.random(0, directions.length - 1)];
+}
