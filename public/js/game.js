@@ -24,3 +24,7 @@ document.addEventListener("keydown", e => {
     socket.emit("useweapon");
   }
 });
+
+document.addEventListener("keyup", e => {
+  socket.emit("releasekey", room);
+});

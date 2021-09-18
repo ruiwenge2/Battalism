@@ -6,4 +6,34 @@ body {
   overflow:hidden;
   font-family: 'Orbitron';
   line-height:200%;
+  text-align:center;
+}
+#rooms {
+  height:300px;
+  width:400px;
+  overflow:scroll;
+  margin:0 auto;
+}
+#no-room-message {
+  display:none;
+}
+#rooms a {
+  display:block;
+  text-decoration:none;
+  color:blue;
+}
+#rooms a:hover {
+  text-decoration:underline;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background:white; 
+}
+::-webkit-scrollbar-thumb {
+  background: lightgray; 
+}
+::-webkit-scrollbar-thumb:hover {
+  background: darkgray; 
 }

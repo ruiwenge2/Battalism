@@ -9,6 +9,11 @@
     Enter username: <input type="text" id="username">
     Enter weapon: <select id="weapons"><option>Sword</option><option>Bow and Arrows</option></select>
     <button onclick="join()">Join</button>
+    <h2 style="margin-top:200px">Rooms with at least 1 player and less than 6 players (updates live):</h2>
+    <div id="rooms">
+      <h3 id="no-room-message">Sorry, there are none. Join a room to start!</h3>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
     <script src="/js/join.js"></script>
   </body>
 </html>

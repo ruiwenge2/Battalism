@@ -44,3 +44,13 @@ module.exports.randomDirection = function(){
   let directions = ["left", "right", "up", "down"];
   return directions[module.exports.random(0, directions.length - 1)];
 }
+
+module.exports.getAvailableRooms = function(){
+  let rooms = [];
+  for(let i of Object.keys(users)){
+    if(users[i].players.length > 0 && users[i].players.length < 6){
+      rooms.push(i);
+    }
+  }
+  return rooms;
+}

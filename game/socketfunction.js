@@ -29,6 +29,11 @@ const socketfunc = socket => {
       socket.emit("error", false);
       socket.broadcast.to(room).emit("joined", user);
       console.log(users);
+      if(users[room].players.length >= 6){
+        io.emit("removeroom", room);
+      } else if(users[room].players.length == 1){
+        io.emit("newroom", room);
+      }
     }
     console.log(users[room]);
   });
@@ -37,11 +42,21 @@ const socketfunc = socket => {
     users[room].move(direction, socket.id);
   });
 
+  socket.on("releasekey", room => {
+    users[room].release(socket.id);
+  });
+
   socket.on("disconnect", () => {
     if(!userInRooms(socket.id)) return;
     console.log("left");
-    users[getRoomOfUser(socket.id)].removePlayer(socket.id);
+    let room = getRoomOfUser(socket.id);
+    users[room].removePlayer(socket.id);
     console.log(users);
+    if(users[room].players.length == 0){
+      io.emit("removeroom", room);
+    } else if(users[room].players.length == 5){
+      io.emit("newroom", room);
+    }
   });
 }
 
