@@ -1,10 +1,23 @@
+* {
+  user-select:none;
+}
+body {
+  color:white;
+}
 #canvas {
   background-image:url(/img/block.png);
   background-size:75px 75px;
+}
+#players {
+  position:absolute;
+  float:left;
+  text-align:left;
 }
 #message {
   font-size:20px;
   opacity:0;
   transition:3s;
-  position:absolute;
+  z-index:100;
+  text-align:center;
+  margin:0 auto;
 }

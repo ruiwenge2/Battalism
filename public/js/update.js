@@ -1,5 +1,6 @@
 function update(data){
   c.clearRect(0, 0, canvas.width, canvas.height);
+  usersdiv.innerHTML = "";
   let { players, rocks } = data;
   for(let info of rocks){
     let [x, y, size] = info;
@@ -17,5 +18,7 @@ function update(data){
     c.fillStyle = "white";
     c.font = "14px Arial";
     c.fillText(info.name, info.x - info.name.length * 3, info.y);
+    usersdiv.innerText += `${info.name}, ${info.health} health`;
+    usersdiv.innerHTML += "<br>";
   }
 }

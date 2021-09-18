@@ -1,5 +1,17 @@
 const socket = io();
 const allrooms = document.getElementById("rooms");
+let username = localStorage.getItem("username");
+let weapon = localStorage.getItem("weapon");
+let room = localStorage.getItem("room");
+if(username){
+  document.getElementById("username").value = username;
+}
+if(room){
+  document.getElementById("room").value = room;
+}
+if(weapon == "arrow"){
+  document.getElementById("weapons").value = "Bow and Arrows";
+}
 
 async function showRooms(){
   let rooms = await fetch("/rooms");
@@ -20,8 +32,8 @@ async function showRooms(){
 showRooms();
 
 function join(){
-  let room = document.getElementById("room").value;
   let username = document.getElementById("username").value;
+  let room = document.getElementById("room").value;
   let weapon = document.getElementById("weapons").value;
   localStorage.setItem("username", username);
   localStorage.setItem("weapon", weapon == "Sword" ? "sword": "arrow");

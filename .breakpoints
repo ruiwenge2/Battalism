@@ -1,11 +1,27 @@
 {
   "files": {
+    ".replit": [
+      {
+        "id": "0580b38d-cf22-4e0e-90dc-9c971a5ee77f",
+        "line": 2,
+        "version": 254,
+        "index": 20
+      }
+    ],
     "game/main.js": [
       {
         "id": "8b3c9940-ae52-4b17-aa37-e0eebbaf1b4f",
         "line": 5,
-        "version": 504,
+        "version": 547,
         "index": 144
+      }
+    ],
+    "game/move.js": [
+      {
+        "id": "95d9a086-1ff9-4380-b4d7-5aa72d729e8d",
+        "line": 7,
+        "version": 916,
+        "index": 233
       }
     ],
     "game/weapon.js": [
