@@ -46,6 +46,10 @@ const socketfunc = socket => {
     users[room].release(socket.id);
   });
 
+  socket.on("useweapon", () => {
+    users[getRoomOfUser(socket.id)].useWeapon(socket.id);
+  });
+
   socket.on("disconnect", () => {
     if(!userInRooms(socket.id)) return;
     console.log("left");

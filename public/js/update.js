@@ -1,6 +1,7 @@
 function update(data){
   c.clearRect(0, 0, canvas.width, canvas.height);
   usersdiv.innerHTML = "";
+  document.querySelector("#players h1").innerHTML = "Players";
   let { players, rocks } = data;
   for(let info of rocks){
     let [x, y, size] = info;

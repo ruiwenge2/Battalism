@@ -20,7 +20,7 @@ document.addEventListener("keydown", e => {
   else if(e.key == "ArrowDown" || e.key == "s"){
     socket.emit("move", "down", room);
   }
-  else if(e.key == "Space"){
+  else if(e.code == "Space"){
     socket.emit("useweapon");
   }
 });
@@ -28,3 +28,5 @@ document.addEventListener("keydown", e => {
 document.addEventListener("keyup", e => {
   socket.emit("releasekey", room);
 });
+
+showMessage("Loading...", 1);

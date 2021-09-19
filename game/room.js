@@ -1,11 +1,14 @@
 const { random, getUser, randomDirection } = require("./functions");
 const { checkLeft, checkRight, checkTop, checkBottom } = require("./move");
+const { Sword, Arrow } = require("./weapon");
 
 class Room {
   constructor(room){
     this.players = [];
     this.room = room;
     this.rocks = [];
+    this.swords = [];
+    this.arrows = [];
   }
   addPlayer(id, user, weapon, width, height){
     this.players.push({
@@ -40,5 +43,35 @@ class Room {
   release(id){
     this.players[getUser(this.room, id)].direction = "none";
   }
+  updatePositions(){
+    for(let user of this.players){
+      switch(user.direction){
+        case "right":
+          if(checkRight(this.room, user.id)) this.players[getUser(this.room, user.id)].x += speed;
+          break;
+        case "left":
+          if(checkLeft(this.room, user.id)) this.players[getUser(this.room, user.id)].x -= speed;
+          break;
+        case "up":
+          if(checkTop(this.room, user.id)) this.players[getUser(this.room, user.id)].y -= speed;
+          break;
+        case "down":
+          if(checkBottom(this.room, user.id)) this.players[getUser(this.room, user.id)].y += speed;
+          break;
+      }
+    }
+  }
+  useWeapon(id){
+    let user = this.players[getUser(this.room, id)];
+    if(user.weapon == "arrow"){
+      this.arrows.push(new Arrow(this.room, id));
+    } else {
+      this.swords.push(new Sword(this.room, id));
+    }
+  }
+  updateWeapons(){
+    
+  }
 }
+
 module.exports = Room;
