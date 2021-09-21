@@ -26,15 +26,14 @@ class Arrow {
     this.y = user.y;
   }
   update(){
-    switch(this.direction){
-      case "left":
-        this.x -= arrow_speed;
-      case "right":
-        this.x += arrow_speed;
-      case "up":
-        this.y -= arrow_speed;
-      case "down":
-        this.y += arrow_speed;
+    if(this.direction == "left"){
+      this.x -= arrow_speed;
+    } else if(this.direction == "right"){
+      this.x += arrow_speed;
+    } else if(this.direction == "up"){
+      this.y -= arrow_speed;
+    } else if(this.direction == "down"){
+      this.y += arrow_speed;
     }
     // if(checkArrowForHits(this.room, this)){
       
