@@ -22,6 +22,7 @@ global.sword_length = 30;
 global.weapon_limits = { sword:12, arrow:15 };
 global.arrow_damage = 15;
 global.sword_damage = 25;
+global.weapon_interval = 25;
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");

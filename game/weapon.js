@@ -22,8 +22,19 @@ class Arrow {
     this.room = room;
     let user = users[this.room].players[getUser(room, id)];
     this.direction = user.side;
-    this.x = user.x;
-    this.y = user.y;
+    if(this.direction == "left"){
+      this.x = user.x - radius;
+      this.y = user.y;
+    } else if(this.direction == "right"){
+      this.x = user.x + radius;
+      this.y = user.y;
+    } else if(this.direction == "up"){
+      this.x = user.x;
+      this.y = user.y - radius;
+    } else if(this.direction == "down"){
+      this.x = user.x;
+      this.y = user.y + radius;
+    }
   }
   update(){
     if(this.direction == "left"){
@@ -35,9 +46,9 @@ class Arrow {
     } else if(this.direction == "down"){
       this.y += arrow_speed;
     }
-    // if(checkArrowForHits(this.room, this)){
+    if(checkArrowForHits(this.room, this)){
       
-    // }
+    }
   }
 }
 

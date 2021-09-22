@@ -22,7 +22,9 @@ class Room {
       cheight:height,
       direction:"none",
       side:randomDirection(),
-      times:weapon_limits[weapon]
+      times:weapon_limits[weapon],
+      useweapon:true,
+      timeleft:0
     });
   }
   removePlayer(id){
@@ -63,11 +65,14 @@ class Room {
   }
   useWeapon(id){
     let user = this.players[getUser(this.room, id)];
+    if(!user.useweapon) return;
     if(user.weapon == "arrow"){
       this.arrows.push(new Arrow(this.room, id));
     } else {
       this.swords.push(new Sword(this.room, id));
     }
+    this.players[getUser(this.room, id)].useweapon = false;
+    this.players[getUser(this.room, id)].timeleft = weapon_interval;
   }
   updateWeapons(){
     
