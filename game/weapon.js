@@ -21,6 +21,7 @@ class Arrow {
   constructor(room, id){
     this.room = room;
     let user = users[this.room].players[getUser(room, id)];
+    this.out = false;
     this.direction = user.side;
     if(this.direction == "left"){
       this.x = user.x - radius;
@@ -37,6 +38,9 @@ class Arrow {
     }
   }
   update(){
+    if(!checkArrowForHits(this.room, this)){
+      this.out = true;
+    }
     if(this.direction == "left"){
       this.x -= arrow_speed;
     } else if(this.direction == "right"){
@@ -45,9 +49,6 @@ class Arrow {
       this.y -= arrow_speed;
     } else if(this.direction == "down"){
       this.y += arrow_speed;
-    }
-    if(checkArrowForHits(this.room, this)){
-      
     }
   }
 }
@@ -62,5 +63,10 @@ function checkSwordForHits(room, sword){
 }
 
 function checkArrowForHits(room, arrow){
-
+  let { players, rocks } = users[room];
+  if(arrow.x < 0 && arrow.x > rock_boundary && arrow.y < 0 && arrow.y > rock_boundary){
+    console.log("removed")
+    return false;
+  }
+  return true
 }

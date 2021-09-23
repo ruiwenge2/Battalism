@@ -62,6 +62,14 @@ class Room {
           break;
       }
     }
+    
+    for(let i = 0; i < this.players.length; i++){
+      if(this.players[i].timeleft > 0){
+        this.players[i].timeleft -= 2;
+      } else if(this.players[i].timeleft <= 0){
+        this.players[i].useweapon = true;
+      }
+    }
   }
   useWeapon(id){
     let user = this.players[getUser(this.room, id)];
@@ -75,7 +83,13 @@ class Room {
     this.players[getUser(this.room, id)].timeleft = weapon_interval;
   }
   updateWeapons(){
-    
+    for(let i = 0; i < this.arrows.length; i++){
+      if(this.arrows[i].out){
+        this.arrows.splice(i, 1);
+      } else {
+        this.arrows[i].update();
+      }
+    }
   }
 }
 
