@@ -64,9 +64,35 @@ function checkSwordForHits(room, sword){
 
 function checkArrowForHits(room, arrow){
   let { players, rocks } = users[room];
-  if(arrow.x < 0 && arrow.x > rock_boundary && arrow.y < 0 && arrow.y > rock_boundary){
+  let dir = arrow.direction;
+  if(arrow.x < 0 || arrow.x > rock_boundary || arrow.y < 0 || arrow.y > rock_boundary){
     console.log("removed")
     return false;
   }
-  return true
+
+  for(let i of rocks){
+    if(dir == "left"){
+
+    } else if(dir == "right"){
+
+    } else if(dir == "up"){
+
+    } else if(dir == "down"){
+      
+    }
+  }
+
+  for(let i of players){
+    if(dir == "left"){
+
+    } else if(dir == "right"){
+
+    } else if(dir == "up"){
+
+    } else if(dir == "down"){
+      
+    }
+  }
+  
+  return true;
 }
