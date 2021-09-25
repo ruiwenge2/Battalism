@@ -54,3 +54,11 @@ module.exports.getAvailableRooms = function(){
   }
   return rooms;
 }
+
+module.exports.shootArrow = function(user){
+
+}
+
+module.exports.useSword = function(user){
+  
+}

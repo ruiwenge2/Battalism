@@ -1,4 +1,4 @@
-const { getUser } = require("./functions");
+const { getUser, shootArrow, useSword } = require("./functions");
 
 class Sword {
   constructor(room, id){
@@ -66,31 +66,43 @@ function checkArrowForHits(room, arrow){
   let { players, rocks } = users[room];
   let dir = arrow.direction;
   if(arrow.x < 0 || arrow.x > rock_boundary || arrow.y < 0 || arrow.y > rock_boundary){
-    console.log("removed")
     return false;
-  }
-
-  for(let i of rocks){
-    if(dir == "left"){
-
-    } else if(dir == "right"){
-
-    } else if(dir == "up"){
-
-    } else if(dir == "down"){
-      
-    }
   }
 
   for(let i of players){
     if(dir == "left"){
-
+      if(arrow.x - arrow_speed - arrow_length < i.x + radius && arrow.x - arrow_speed - arrow_length > i.x - radius && arrow.y + arrow_length > i.y - radius && arrow.y - arrow_length < i.y + radius){
+        shootArrow(i);
+        return false;
+      }
     } else if(dir == "right"){
-
+      if(arrow.x + arrow_speed + arrow_length > i.x - radius && arrow.x + arrow_speed + arrow_length < i.x + radius && arrow.y + arrow_length > i.y - radius && arrow.y - arrow_length < i.y + radius){
+        shootArrow(i);
+        return false;
+      }
     } else if(dir == "up"){
-
+      if(arrow.x + arrow_length > i.x - radius && arrow.x - arrow_length < i.x + radius && arrow.y - arrow_speed - arrow_length < i.y + radius && arrow.y - arrow_speed - arrow_length > i.y - radius){
+        shootArrow(i);
+        return false;
+      }
     } else if(dir == "down"){
-      
+      if(arrow.x + arrow_length > i.x - radius && arrow.x - arrow_length < i.x + radius && arrow.y + arrow_speed + arrow_length > i.y - radius && arrow.y + arrow_speed + arrow_length < i.y + radius){
+        shootArrow(i);
+        return false;
+      }
+    }
+  }
+
+  for(let j of rocks){
+    let [ x, y, size] = j;
+    if(dir == "left"){
+      if(arrow.x - arrow_speed - arrow_length < x + size && arrow.x - arrow_speed - arrow_length > x - size && arrow.y + arrow_length > y - size && arrow.y - arrow_length < y + size) return false;
+    } else if(dir == "right"){
+      if(arrow.x + arrow_speed + arrow_length > x - size && arrow.x + arrow_speed + arrow_length < x + size && arrow.y + arrow_length > y - size && arrow.y - arrow_length < y + size) return false;
+    } else if(dir == "up"){
+      if(arrow.x + arrow_length > x - size && arrow.x - arrow_length < x + size && arrow.y - arrow_speed - arrow_length < y + size && arrow.y - arrow_speed - arrow_length > y - size) return false;
+    } else if(dir == "down"){
+      if(arrow.x + arrow_length > x - size && arrow.x - arrow_length < x + size && arrow.y + arrow_speed + arrow_length > y - size && arrow.y + arrow_speed + arrow_length < y + size) return false;
     }
   }
   

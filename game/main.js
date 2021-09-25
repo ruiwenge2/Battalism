@@ -16,13 +16,14 @@ global.speed = 8;
 global.radius = 37.5;
 global.min_rock_size = 20;
 global.max_rock_size = 100;
-global.rock_boundary = 2000;
+global.rock_boundary = 1500;
 global.arrow_speed = 50;
 global.sword_length = 30;
 global.weapon_limits = { sword:12, arrow:15 };
 global.arrow_damage = 15;
 global.sword_damage = 25;
 global.weapon_interval = 25;
+global.arrow_length = 40;
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");

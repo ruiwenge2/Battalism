@@ -28,13 +28,13 @@ function update(data){
     c.moveTo(arrow.x, arrow.y);
     let direction = arrow.direction;
     if(direction == "left"){
-      c.lineTo(arrow.x - 40, arrow.y);
+      c.lineTo(arrow.x - arrow_length, arrow.y);
     } else if(direction == "right"){
-      c.lineTo(arrow.x + 40, arrow.y);
+      c.lineTo(arrow.x + arrow_length, arrow.y);
     } else if(direction == "up"){
-      c.lineTo(arrow.x, arrow.y - 40);
+      c.lineTo(arrow.x, arrow.y - arrow_length);
     } else if(direction == "down"){
-      c.lineTo(arrow.x, arrow.y + 40);
+      c.lineTo(arrow.x, arrow.y + arrow_length);
     }
     c.stroke();
   }

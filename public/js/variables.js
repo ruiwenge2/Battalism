@@ -11,5 +11,6 @@ canvas.height = window.innerHeight;
 
 const speed = 11;
 const radius = 37.5;
+const arrow_length = 40;
 
 localStorage.setItem("room", room);
