@@ -39,11 +39,19 @@ class Room {
     }
   }
   move(direction, id){
-    this.players[getUser(this.room, id)].direction = direction;
-    this.players[getUser(this.room, id)].side = direction;
+    try {
+      this.players[getUser(this.room, id)].direction = direction;
+      this.players[getUser(this.room, id)].side = direction;
+    } catch(err){
+      console.log(err);
+    }
   }
   release(id){
-    this.players[getUser(this.room, id)].direction = "none";
+    try {
+      this.players[getUser(this.room, id)].direction = "none";
+    } catch(err){
+      console.log(err)
+    }
   }
   updatePositions(){
     for(let user of this.players){

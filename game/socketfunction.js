@@ -1,6 +1,5 @@
 const Room = require("./room");
 const { random, getUser, getRoomOfUser, checkUsername, userInRooms } = require("./functions");
-const { allchars } = require("../config");
 
 const socketfunc = socket => {
   socket.on("check", (user, room, weapon, width, height) => {
@@ -19,6 +18,12 @@ const socketfunc = socket => {
     if(users[room].players.length >= max){
       socket.emit("error", "There are already 6 users in this room, so please join another.");
       return;
+    }
+    for(let i of user){
+      if(!allchars.includes(i)){
+        socket.emit("error", "Username can only contain alphanumeric characters and underscores.");
+        return;
+      }
     }
     if(!true){ // for now
       socket.emit("error", "Your username has been taken in this room.");
@@ -40,7 +45,11 @@ const socketfunc = socket => {
   });
 
   socket.on("move", (direction, room) => {
-    users[room].move(direction, socket.id);
+    try {
+      users[room].move(direction, socket.id);
+    } catch(err){
+      console.log(err);
+    }
   });
 
   socket.on("releasekey", room => {

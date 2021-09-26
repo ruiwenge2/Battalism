@@ -55,8 +55,9 @@ module.exports.getAvailableRooms = function(){
   return rooms;
 }
 
-module.exports.shootArrow = function(user){
-
+module.exports.shootArrow = function(user, arrow){
+  user.health -= arrow_damage;
+  io.to(user.id).emit("hit_by_arrow", arrow.user);
 }
 
 module.exports.useSword = function(user){

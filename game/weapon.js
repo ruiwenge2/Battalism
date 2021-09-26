@@ -23,6 +23,7 @@ class Arrow {
     let user = users[this.room].players[getUser(room, id)];
     this.out = false;
     this.direction = user.side;
+    this.user = user.name;
     if(this.direction == "left"){
       this.x = user.x - radius;
       this.y = user.y;
@@ -72,22 +73,22 @@ function checkArrowForHits(room, arrow){
   for(let i of players){
     if(dir == "left"){
       if(arrow.x - arrow_speed - arrow_length < i.x + radius && arrow.x - arrow_speed - arrow_length > i.x - radius && arrow.y + arrow_length > i.y - radius && arrow.y - arrow_length < i.y + radius){
-        shootArrow(i);
+        shootArrow(i, arrow);
         return false;
       }
     } else if(dir == "right"){
       if(arrow.x + arrow_speed + arrow_length > i.x - radius && arrow.x + arrow_speed + arrow_length < i.x + radius && arrow.y + arrow_length > i.y - radius && arrow.y - arrow_length < i.y + radius){
-        shootArrow(i);
+        shootArrow(i, arrow);
         return false;
       }
     } else if(dir == "up"){
       if(arrow.x + arrow_length > i.x - radius && arrow.x - arrow_length < i.x + radius && arrow.y - arrow_speed - arrow_length < i.y + radius && arrow.y - arrow_speed - arrow_length > i.y - radius){
-        shootArrow(i);
+        shootArrow(i, arrow);
         return false;
       }
     } else if(dir == "down"){
       if(arrow.x + arrow_length > i.x - radius && arrow.x - arrow_length < i.x + radius && arrow.y + arrow_speed + arrow_length > i.y - radius && arrow.y + arrow_speed + arrow_length < i.y + radius){
-        shootArrow(i);
+        shootArrow(i, arrow);
         return false;
       }
     }

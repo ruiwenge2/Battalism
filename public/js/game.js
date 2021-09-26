@@ -7,6 +7,10 @@ socket.on("error", err => {
   else alertmodal("", err).then(() => location.href = "/");
 });
 
+socket.on("hit_by_arrow", async user => {
+  await showMessage(`${user} shot you with an arrow.`, 1);
+})
+
 document.addEventListener("keydown", e => {
   if(e.key == "ArrowRight" || e.key == "d"){
     socket.emit("move", "right", room);
