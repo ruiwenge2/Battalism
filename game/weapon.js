@@ -95,7 +95,7 @@ function checkArrowForHits(room, arrow){
   }
 
   for(let j of rocks){
-    let [ x, y, size] = j;
+    let [ x, y, size ] = j;
     if(dir == "left"){
       if(arrow.x - arrow_speed - arrow_length < x + size && arrow.x - arrow_speed - arrow_length > x - size && arrow.y + arrow_length > y - size && arrow.y - arrow_length < y + size) return false;
     } else if(dir == "right"){
