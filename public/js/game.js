@@ -8,8 +8,13 @@ socket.on("error", err => {
 });
 
 socket.on("hit_by_arrow", async user => {
-  await showMessage(`${user} shot you with an arrow.`, 1);
-})
+  await showMessage(`${user} shot you with an arrow.`, 2);
+});
+
+socket.on("lost", async () => {
+  socket.emit("lost");
+  await showMessage("You lost all your health.", 2);
+});
 
 document.addEventListener("keydown", e => {
   if(e.key == "ArrowRight" || e.key == "d"){
