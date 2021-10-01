@@ -38,4 +38,19 @@ function update(data){
     }
     c.stroke();
   }
+  for(let rock of rocks){
+    c.beginPath();
+    c.moveTo(rock.x, rock.y);
+    let direction = rock.direction;
+    if(direction == "left"){
+      c.lineTo(rock.x - arrow_length, rock.y);
+    } else if(direction == "right"){
+      c.lineTo(rock.x + arrow_length, rock.y);
+    } else if(direction == "up"){
+      c.lineTo(rock.x, rock.y - arrow_length);
+    } else if(direction == "down"){
+      c.lineTo(rock.x, rock.y + arrow_length);
+    }
+    c.stroke();
+  }
 }

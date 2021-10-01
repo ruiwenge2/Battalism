@@ -98,6 +98,13 @@ class Room {
         this.arrows[i].update();
       }
     }
+    for(let i = 0; i < this.swords.length; i++){
+      if(this.arrows[i].time >= 25){
+        this.arrows.splice(i, 1);
+      } else {
+        this.arrows[i].update();
+      }
+    }
   }
 }
 

@@ -18,6 +18,10 @@ app.get("/game", (req, res) => {
   res.redirect("/");
 });
 
+app.get("/howtoplay", (req, res) => {
+  res.sendFile(__dirname + "/public/howtoplay.html");
+});
+
 app.get("/game/:room", (req, res) => {
   res.sendFile(__dirname + "/public/game.html");
 });

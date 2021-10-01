@@ -3,6 +3,7 @@
   - [x] there's a weapon limit
   - [x] make arrows move a certain speed every millesecond
   - when player uses sword show the sword for about 1 second
+  - maybe change direction of player based on their cursor position and click to shoot for arrows?
 
 - [x] show rooms with at least 1 user and less than 6 users in the home page
 

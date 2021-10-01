@@ -8,21 +8,26 @@ body {
   line-height:200%;
   text-align:center;
 }
+main {
+  width:100vw;
+  height:100vh;
+  overflow:auto;
+}
 #rooms {
   height:300px;
   width:400px;
-  overflow:scroll;
+  overflow:auto;
   margin:0 auto;
 }
 #no-room-message {
   display:none;
 }
-#rooms a {
+a {
   display:block;
   text-decoration:none;
   color:blue;
 }
-#rooms a:hover {
+a:hover {
   text-decoration:underline;
 }
 ::-webkit-scrollbar {

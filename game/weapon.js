@@ -8,11 +8,12 @@ class Sword {
     this.x = this.user.x;
     this.y = this.user.y;
     this.time = 0;
+    this.hit = false;
   }
   update(){
     this.time++;
     if(checkSwordForHits(this.room, this)){
-      
+      this.hit = true;
     }
   }
 }
