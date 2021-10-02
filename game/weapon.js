@@ -3,12 +3,24 @@ const { getUser, shootArrow, useSword } = require("./functions");
 class Sword {
   constructor(room, id){
     this.room = room;
-    this.user = users[this.room].players[getUser(room, id)];
-    this.direction = this.user.side;
-    this.x = this.user.x;
-    this.y = this.user.y;
+    let user = users[this.room].players[getUser(room, id)];
+    this.out = false;
+    this.direction = user.side;
+    this.user = user.name;
     this.time = 0;
-    this.hit = false;
+    if(this.direction == "left"){
+      this.x = user.x - radius;
+      this.y = user.y;
+    } else if(this.direction == "right"){
+      this.x = user.x + radius;
+      this.y = user.y;
+    } else if(this.direction == "up"){
+      this.x = user.x;
+      this.y = user.y - radius;
+    } else if(this.direction == "down"){
+      this.x = user.x;
+      this.y = user.y + radius;
+    }
   }
   update(){
     this.time++;
@@ -61,7 +73,7 @@ module.exports = {
 }
 
 function checkSwordForHits(room, sword){
-
+  return false;
 }
 
 function checkArrowForHits(room, arrow){

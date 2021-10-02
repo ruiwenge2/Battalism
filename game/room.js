@@ -50,7 +50,7 @@ class Room {
     try {
       this.players[getUser(this.room, id)].direction = "none";
     } catch(err){
-      console.log(err)
+      console.log(err);
     }
   }
   updatePositions(){
@@ -82,6 +82,7 @@ class Room {
   useWeapon(id){
     let user = this.players[getUser(this.room, id)];
     if(!user.useweapon) return;
+    console.log("using weapon");
     if(user.weapon == "arrow"){
       this.arrows.push(new Arrow(this.room, id));
     } else {
@@ -99,10 +100,11 @@ class Room {
       }
     }
     for(let i = 0; i < this.swords.length; i++){
-      if(this.arrows[i].time >= 25){
-        this.arrows.splice(i, 1);
+      if(this.swords[i].time >= 25){
+        this.swords.splice(i, 1);
+        console.log("removed weapon")
       } else {
-        this.arrows[i].update();
+        this.swords[i].update();
       }
     }
   }
