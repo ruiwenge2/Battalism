@@ -12,6 +12,7 @@ global.arrow_damage = 15;
 global.sword_damage = 25;
 global.weapon_interval = 25;
 global.arrow_length = 40;
+global.max_user_length = 15;
 
 global.allchars = [
   "a", "b", "c", "d", "e", "f", "g", "h", "i",

@@ -3,7 +3,6 @@ function update(data){
   usersdiv.innerHTML = "";
   document.querySelector("#players h1").innerHTML = "Players";
   let { players, rocks, swords, arrows } = data;
-  console.log(rocks);
   for(let info of rocks){
     let [ x, y, size ] = info;
     c.beginPath();
@@ -19,7 +18,7 @@ function update(data){
     c.stroke();
     c.fillStyle = "white";
     c.font = "14px Arial";
-    c.fillText(info.name, info.x - info.name.length * 3, info.y);
+    c.fillText(info.name, info.x - info.name.length * 3.5, info.y);
     usersdiv.innerText += `${info.name}, ${info.health} health`;
     usersdiv.innerHTML += "<br>";
   }
@@ -38,18 +37,18 @@ function update(data){
     }
     c.stroke();
   }
-  for(let rock of rocks){
+  for(let sword of swords){
     c.beginPath();
-    c.moveTo(rock.x, rock.y);
-    let direction = rock.direction;
+    c.moveTo(sword.x, sword.y);
+    let direction = sword.direction;
     if(direction == "left"){
-      c.lineTo(rock.x - arrow_length, rock.y);
+      c.lineTo(sword.x - arrow_length, sword.y);
     } else if(direction == "right"){
-      c.lineTo(rock.x + arrow_length, rock.y);
+      c.lineTo(sword.x + arrow_length, sword.y);
     } else if(direction == "up"){
-      c.lineTo(rock.x, rock.y - arrow_length);
+      c.lineTo(sword.x, sword.y - arrow_length);
     } else if(direction == "down"){
-      c.lineTo(rock.x, rock.y + arrow_length);
+      c.lineTo(sword.x, sword.y + arrow_length);
     }
     c.stroke();
   }
