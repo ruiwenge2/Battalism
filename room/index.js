@@ -1,6 +1,6 @@
-const { random, getUser, randomDirection } = require("./functions");
+const { random, getUser, randomDirection } = require("../game/functions");
 const { checkLeft, checkRight, checkTop, checkBottom } = require("./move");
-const { Sword, Arrow } = require("./weapon");
+const { Sword, Arrow } = require("../weapon");
 
 class Room {
   constructor(room){

@@ -4,7 +4,7 @@ const server = require("http").Server(app);
 global.io = require("socket.io")(server);
 app.use(express.static("public"));
 
-const socketfunc = require("./socketfunction");
+const socketfunc = require("../socketfunction");
 const update = require("./update");
 const { getAvailableRooms } = require("./functions");
 require("../config");

@@ -1,5 +1,5 @@
-const Room = require("./room");
-const { random, getUser, getRoomOfUser, checkUsername, userInRooms } = require("./functions");
+const Room = require("../room");
+const { random, getUser, getRoomOfUser, checkUsername, userInRooms } = require("../game/functions");
 
 const socketfunc = socket => {
   socket.on("check", (user, room, weapon, width, height) => {
