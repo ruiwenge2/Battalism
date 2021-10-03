@@ -63,6 +63,10 @@ module.exports.shootArrow = function(user, arrow){
   }
 }
 
-module.exports.useSword = function(user){
-  
+module.exports.useSword = function(user, sword){
+  user.health -= sword_damage;
+  io.to(user.id).emit("hit_by_sword", sword.user);
+  if(user.health <= 0){
+    setTimeout(function(){io.to(user.id).emit("lost")}, 1000);
+  }
 }

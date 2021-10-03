@@ -11,6 +11,10 @@ socket.on("hit_by_arrow", async user => {
   await showMessage(`${user} shot you with an arrow.`, 2);
 });
 
+socket.on("hit_by_sword", async user => {
+  await showMessage(`${user} stabbed you with a sword.`, 2);
+});
+
 socket.on("lost", async () => {
   socket.emit("lost");
   await showMessage("You lost all your health.", 2);

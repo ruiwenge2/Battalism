@@ -82,7 +82,6 @@ class Room {
   useWeapon(id){
     let user = this.players[getUser(this.room, id)];
     if(!user.useweapon) return;
-    console.log("using weapon");
     if(user.weapon == "arrow"){
       this.arrows.push(new Arrow(this.room, id));
     } else {
@@ -102,7 +101,6 @@ class Room {
     for(let i = 0; i < this.swords.length; i++){
       if(this.swords[i].time >= 25){
         this.swords.splice(i, 1);
-        console.log("removed weapon")
       } else {
         this.swords[i].update();
       }

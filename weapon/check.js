@@ -1,7 +1,47 @@
 const { shootArrow, useSword } = require("../game/functions");
 
 module.exports.checkSwordForHits = function(room, sword){
-  return false;
+  let { players, rocks } = users[room];
+  let dir = sword.direction;
+
+  for(let i of players){
+    if(dir == "left"){
+      if(sword.x - sword_length < i.x + radius && sword.x - sword_length > i.x - radius && sword.y + sword_length > i.y - radius && sword.y - sword_length < i.y + radius){
+        useSword(i, sword);
+        return false;
+      }
+    } else if(dir == "right"){
+      if(sword.x + sword_length > i.x - radius && sword.x + sword_length < i.x + radius && sword.y + sword_length > i.y - radius && sword.y - sword_length < i.y + radius){
+        useSword(i, sword);
+        return false;
+      }
+    } else if(dir == "up"){
+      if(sword.x + sword_length > i.x - radius && sword.x - sword_length < i.x + radius && sword.y - sword_length < i.y + radius && sword.y - sword_length > i.y - radius){
+        useSword(i, sword);
+        return false;
+      }
+    } else if(dir == "down"){
+      if(sword.x + sword_length > i.x - radius && sword.x - sword_length < i.x + radius && sword.y + sword_length > i.y - radius && sword.y + sword_length < i.y + radius){
+        useSword(i, sword);
+        return false;
+      }
+    }
+  }
+
+  for(let j of rocks){
+    let [ x, y, size ] = j;
+    if(dir == "left"){
+      if(sword.x - sword_length < x + size && sword.x - sword_length > x - size && sword.y + sword_length > y - size && sword.y - sword_length < y + size) return false;
+    } else if(dir == "right"){
+      if(sword.x + sword_length > x - size && sword.x + sword_length < x + size && sword.y + sword_length > y - size && sword.y - sword_length < y + size) return false;
+    } else if(dir == "up"){
+      if(sword.x + sword_length > x - size && sword.x - sword_length < x + size && sword.y - sword_length < y + size && sword.y - sword_length > y - size) return false;
+    } else if(dir == "down"){
+      if(sword.x + sword_length > x - size && sword.x - sword_length < x + size && sword.y + sword_length > y - size && sword.y + sword_length < y + size) return false;
+    }
+  }
+
+  return true;
 }
 
 module.exports.checkArrowForHits = function(room, arrow){

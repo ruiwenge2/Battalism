@@ -9,6 +9,7 @@ class Sword {
     this.direction = user.side;
     this.user = user.name;
     this.time = 0;
+    this.hit = false;
     if(this.direction == "left"){
       this.x = user.x - radius;
       this.y = user.y;
@@ -25,7 +26,8 @@ class Sword {
   }
   update(){
     this.time++;
-    if(checkSwordForHits(this.room, this)){
+    if(this.hit) return;
+    if(!checkSwordForHits(this.room, this)){
       this.hit = true;
     }
   }
