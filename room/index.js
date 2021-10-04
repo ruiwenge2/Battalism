@@ -99,7 +99,7 @@ class Room {
       }
     }
     for(let i = 0; i < this.swords.length; i++){
-      if(this.swords[i].time >= 25){
+      if(this.swords[i].time >= 10){
         this.swords.splice(i, 1);
       } else {
         this.swords[i].update();

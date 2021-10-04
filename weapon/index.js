@@ -5,6 +5,7 @@ class Sword {
   constructor(room, id){
     this.room = room;
     let user = users[this.room].players[getUser(room, id)];
+    this.userid = id;
     this.out = false;
     this.direction = user.side;
     this.user = user.name;
@@ -25,6 +26,20 @@ class Sword {
     }
   }
   update(){
+    let user = users[this.room].players[getUser(room, this.userid)];
+    if(this.direction == "left"){
+      this.x = user.x - radius;
+      this.y = user.y;
+    } else if(this.direction == "right"){
+      this.x = user.x + radius;
+      this.y = user.y;
+    } else if(this.direction == "up"){
+      this.x = user.x;
+      this.y = user.y - radius;
+    } else if(this.direction == "down"){
+      this.x = user.x;
+      this.y = user.y + radius;
+    }
     this.time++;
     if(this.hit) return;
     if(!checkSwordForHits(this.room, this)){
