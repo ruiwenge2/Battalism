@@ -1,13 +1,5 @@
 {
   "files": {
-    ".replit": [
-      {
-        "id": "0580b38d-cf22-4e0e-90dc-9c971a5ee77f",
-        "line": 2,
-        "version": 254,
-        "index": 20
-      }
-    ],
     "game/main.js": [
       {
         "id": "8b3c9940-ae52-4b17-aa37-e0eebbaf1b4f",
@@ -30,6 +22,14 @@
         "line": 73,
         "version": 2147,
         "index": 1791
+      }
+    ],
+    "socketfunction/index.js": [
+      {
+        "id": "72d7f638-3191-4dbc-bb28-e90762273de5",
+        "line": 9,
+        "version": 12,
+        "index": 329
       }
     ]
   }

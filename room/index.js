@@ -89,6 +89,7 @@ class Room {
     }
     this.players[getUser(this.room, id)].useweapon = false;
     this.players[getUser(this.room, id)].timeleft = weapon_interval;
+    this.players[getUser(this.room, id)].times -= 1;
   }
   updateWeapons(){
     for(let i = 0; i < this.arrows.length; i++){
