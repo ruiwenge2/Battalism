@@ -80,16 +80,26 @@ class Room {
     }
   }
   useWeapon(id){
-    let user = this.players[getUser(this.room, id)];
+    let num = getUser(this.room, id);
+    let user = this.players[num];
     if(!user.useweapon) return;
+    if(user.times <= 0){
+      if(user.weapon == "arrow"){
+        io.to(id).emit("noweapon", "You don't have any arrows left.");
+      } else {
+        io.to(id).emit("noweapon", "You can't use your sword anymore.");
+      }
+      return;
+    }
     if(user.weapon == "arrow"){
       this.arrows.push(new Arrow(this.room, id));
     } else {
       this.swords.push(new Sword(this.room, id));
     }
-    this.players[getUser(this.room, id)].useweapon = false;
-    this.players[getUser(this.room, id)].timeleft = weapon_interval;
-    this.players[getUser(this.room, id)].times -= 1;
+    this.players[num].useweapon = false;
+    this.players[num].timeleft = weapon_interval;
+    this.players[num].times -= 1;
+    io.to(id).emit("timesleft", this.players[num].times);
   }
   updateWeapons(){
     for(let i = 0; i < this.arrows.length; i++){

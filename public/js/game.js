@@ -8,16 +8,24 @@ socket.on("error", err => {
 });
 
 socket.on("hit_by_arrow", async user => {
-  await showMessage(`${user} shot you with an arrow.`, 2);
+  await showMessage2(`${user} shot you with an arrow.`, 2);
 });
 
 socket.on("hit_by_sword", async user => {
-  await showMessage(`${user} stabbed you with a sword.`, 2);
+  await showMessage2(`${user} stabbed you with a sword.`, 1);
+});
+
+socket.on("arrow_hit", async user => {
+  await showMessage2(`You shot ${user}.`, 1);
+});
+
+socket.on("sword_hit", async user => {
+  await showMessage2(`You stabbed ${user}.`, 1);
 });
 
 socket.on("lost", async () => {
   socket.emit("lost");
-  await showMessage("You lost all your health.", 2);
+  await showMessage3("You lost all your health.");
 });
 
 document.addEventListener("keydown", e => {

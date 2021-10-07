@@ -24,7 +24,12 @@ body {
   width:30%;
   left:35%;
 }
-
+#message2 {
+  right:0;
+  position:absolute;
+  opacity:0;
+  transition:3s;
+}
 .modal-content {
   color:black;
 }

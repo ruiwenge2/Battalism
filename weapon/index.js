@@ -52,6 +52,7 @@ class Arrow {
   constructor(room, id){
     this.room = room;
     let user = users[this.room].players[getUser(room, id)];
+    this.userid = user.id;
     this.out = false;
     this.direction = user.side;
     this.user = user.name;
