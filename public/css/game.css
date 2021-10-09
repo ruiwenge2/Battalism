@@ -16,7 +16,7 @@ body {
 #message {
   font-size:30px;
   opacity:0;
-  transition:3s;
+  transition:0.5s;
   text-align:center;
   margin:0;
   padding:0;
@@ -28,7 +28,7 @@ body {
   right:0;
   position:absolute;
   opacity:0;
-  transition:3s;
+  transition:0.3s;
 }
 .modal-content {
   color:black;

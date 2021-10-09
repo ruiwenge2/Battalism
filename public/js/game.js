@@ -23,6 +23,18 @@ socket.on("sword_hit", async user => {
   await showMessage2(`You stabbed ${user}.`, 1);
 });
 
+socket.on("timesleft", async (num, weapon) => {
+  if(weapon == "arrow"){
+    await showMessage(`Arrows left: ${num}`, 1);
+  } else {
+    await showMessage(`Times left to use your sword: ${num}`, 1);
+  }
+});
+
+socket.on("noweapon", async message => {
+  await showMessage(message, 1);
+});
+
 socket.on("lost", async () => {
   socket.emit("lost");
   await showMessage3("You lost all your health.");
