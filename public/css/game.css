@@ -8,7 +8,7 @@ body {
   background-image:url(/img/block.png);
   background-size:75px 75px;
 }
-#players {
+#sidebar {
   position:absolute;
   float:left;
   text-align:left;
