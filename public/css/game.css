@@ -30,6 +30,9 @@ body {
   opacity:0;
   transition:0.3s;
 }
+#chatbox {
+  display:none;
+}
 .modal-content {
   color:black;
 }
