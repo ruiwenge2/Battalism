@@ -13,6 +13,17 @@ main {
   height:100vh;
   overflow:auto;
 }
+button {
+  height:30px;
+  width:150px;
+  border:1px solid black;
+  cursor:pointer;
+  border-radius:5px;
+  background:#e6e8eb;
+}
+button:hover {
+  background:#dadde0;
+}
 #rooms {
   height:300px;
   width:400px;
