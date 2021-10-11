@@ -8,3 +8,4 @@
 - [x] show rooms with at least 1 user and less than 6 users in the home page
 
 - make a chat box
+- put directions in how to play page
