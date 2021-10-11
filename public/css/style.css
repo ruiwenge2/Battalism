@@ -41,6 +41,9 @@ a {
 a:hover {
   text-decoration:underline;
 }
+#howtoplay-link {
+  display:inline-block;
+}
 ::-webkit-scrollbar {
   width: 10px;
 }
