@@ -32,6 +32,9 @@ body {
 }
 #chatbox {
   display:none;
+  position:absolute;
+  width:50%;
+  left:25%;
 }
 .modal-content {
   color:black;
