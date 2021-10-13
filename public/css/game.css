@@ -35,6 +35,10 @@ body {
   position:absolute;
   width:50%;
   left:25%;
+  border:3px solid black;
+  border-radius:5px;
+  top:30%;
+  text-align:center;
 }
 .modal-content {
   color:black;
