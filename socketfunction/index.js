@@ -69,6 +69,14 @@ const socketfunc = socket => {
     socket.disconnect();
   });
 
+  socket.on("chat message", message => {
+    let id = socket.id;
+    let room = getRoomOfUser(id);
+    let user = users[room].players[getUser(room, id)].name;
+    console.log(id, room, user);
+    socket.broadcast.to(room).emit("chat message", user, message);
+  });
+
   socket.on("disconnect", () => {
     if(!userInRooms(socket.id)) return;
     console.log("left");

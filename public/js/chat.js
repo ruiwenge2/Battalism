@@ -1,6 +1,50 @@
+var chatbox = document.getElementById("chatbox");
+var input = document.getElementById("chat-input");
+var messages = document.getElementById("messages");
+var focus = true;
+
+window.onblur = function(){
+  focus = false;
+}
+window.onfocus = function(){
+  focus = true;
+}
+
 function chat(){
-  document.getElementById("chatbox").style.display = "block";
+  chatbox.style.display = "block";
 }
 function closeChat(){
-  document.getElementById("chatbox").style.display = "none";
+  chatbox.style.display = "none";
+}
+
+input.addEventListener("keydown", e => {
+  if(e.key == "Enter" && validMessage(input.value)){
+    socket.emit("chat message", input.value);
+    messages.innerHTML += `<p>${user}: ${encodeHTML(input.value)}</p>`;
+    input.value = "";
+    messages.scrollTo(0, messages.scrollHeight);
+    input.focus();
+  }
+});
+
+socket.on("chat message", (username, message) => {
+  if(!focus){
+    document.getElementById("chat-alert").play();
+  }
+  messages.innerHTML += `<p>${username}: ${encodeHTML(message)}</p>`;
+  messages.scrollTo(0, messages.scrollHeight);
+})
+
+function encodeHTML(text){
+  var div = document.createElement("div");
+  div.innerText = text;
+  return div.innerHTML;
+}
+
+function validMessage(message){
+  if(!message) return false;
+  for(var i of message){
+    if(i != " ") return true;
+  }
+  return false;
 }

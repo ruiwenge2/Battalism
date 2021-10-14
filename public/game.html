@@ -6,6 +6,7 @@
     <link href="/css/game.css" rel="stylesheet">
   </head>
   <body>
+    <audio id="chat-alert"><source src="/sounds/chat_alert.mp3"></audio>
     <div id="sidebar">
       <div id="players">
         <h1>Players</h1>
@@ -17,7 +18,8 @@
     <div id="message2"></div>
     <div id="chatbox">
       <h1>Chat</h1>
-      <input id="chat-nput" placeholder="Type message here..."><br><br>
+      <div id="messages"></div>
+      <input id="chat-input" placeholder="Type message here..."><br><br>
       <button onclick="closeChat()">Close</button>
     </div>
     <canvas id="canvas"></canvas>
