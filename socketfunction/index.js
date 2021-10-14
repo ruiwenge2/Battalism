@@ -73,7 +73,6 @@ const socketfunc = socket => {
     let id = socket.id;
     let room = getRoomOfUser(id);
     let user = users[room].players[getUser(room, id)].name;
-    console.log(id, room, user);
     socket.broadcast.to(room).emit("chat message", user, message);
   });
 

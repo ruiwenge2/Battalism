@@ -1,8 +1,3 @@
-var chatbox = document.getElementById("chatbox");
-var input = document.getElementById("chat-input");
-var messages = document.getElementById("messages");
-var focus = true;
-
 window.onblur = function(){
   focus = false;
 }
@@ -24,6 +19,7 @@ input.addEventListener("keydown", e => {
     input.value = "";
     messages.scrollTo(0, messages.scrollHeight);
     input.focus();
+    console.log(document.activeElement);
   }
 });
 

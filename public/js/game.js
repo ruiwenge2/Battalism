@@ -41,6 +41,7 @@ socket.on("lost", async () => {
 });
 
 document.addEventListener("keydown", e => {
+  if(document.activeElement == input) return;
   if(e.key == "ArrowRight" || e.key == "d"){
     socket.emit("move", "right", room);
   }

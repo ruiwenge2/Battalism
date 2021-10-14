@@ -5,6 +5,10 @@ const socket = io();
 const canvas = document.getElementById("canvas");
 const c = canvas.getContext("2d");
 const usersdiv = document.getElementById("players-main");
+var chatbox = document.getElementById("chatbox");
+var input = document.getElementById("chat-input");
+var messages = document.getElementById("messages");
+var focus = true;
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
