@@ -1,3 +1,6 @@
+const Filter = require("bad-words");
+var filter = new Filter();
+
 const Room = require("../room");
 const { random, getUser, getRoomOfUser, checkUsername, userInRooms } = require("../game/functions");
 
@@ -73,7 +76,7 @@ const socketfunc = socket => {
     let id = socket.id;
     let room = getRoomOfUser(id);
     let user = users[room].players[getUser(room, id)].name;
-    socket.broadcast.to(room).emit("chat message", user, message);
+    io.to(room).emit("chat message", user, filter.clean(message));
   });
 
   socket.on("disconnect", () => {

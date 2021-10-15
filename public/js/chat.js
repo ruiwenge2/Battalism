@@ -15,11 +15,8 @@ function closeChat(){
 input.addEventListener("keydown", e => {
   if(e.key == "Enter" && validMessage(input.value)){
     socket.emit("chat message", input.value);
-    messages.innerHTML += `<p>${user}: ${encodeHTML(input.value)}</p>`;
     input.value = "";
-    messages.scrollTo(0, messages.scrollHeight);
     input.focus();
-    console.log(document.activeElement);
   }
 });
 
