@@ -40,6 +40,12 @@ body {
   top:30%;
   text-align:center;
 }
+#messages {
+  height:90%;
+  width:90%;
+  overflow:auto;
+  height:150px;
+}
 .modal-content {
   color:black;
 }
