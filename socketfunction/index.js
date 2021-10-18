@@ -61,11 +61,19 @@ const socketfunc = socket => {
   });
 
   socket.on("releasekey", room => {
-    users[room].release(socket.id);
+    try {
+      users[room].release(socket.id);
+    } catch(e){
+      console.log(e)
+    }
   });
 
   socket.on("useweapon", () => {
-    users[getRoomOfUser(socket.id)].useWeapon(socket.id);
+    try {
+      users[getRoomOfUser(socket.id)].useWeapon(socket.id);
+    } catch(e){
+      console.log(e)
+    }
   });
 
   socket.on("lost", () => {
