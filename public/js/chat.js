@@ -13,12 +13,15 @@ function closeChat(){
 }
 
 input.addEventListener("keydown", e => {
-  if(e.key == "Enter" && validMessage(input.value)){
-    socket.emit("chat message", input.value);
-    input.value = "";
-    input.focus();
-  }
+  if(e.key == "Enter") sendMessage();
 });
+
+function sendMessage(){
+  if(!validMessage(input.value)) return;
+  socket.emit("chat message", input.value);
+  input.value = "";
+  input.focus();
+}
 
 socket.on("chat message", (username, message) => {
   if(!focus){

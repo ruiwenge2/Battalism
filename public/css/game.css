@@ -45,6 +45,16 @@ body {
   width:90%;
   overflow:auto;
   height:150px;
+  margin:0 auto;
+}
+input {
+  height:23px;
+}
+input:focus {
+  outline:none;
+}
+#send {
+  width:75px;
 }
 .modal-content {
   color:black;

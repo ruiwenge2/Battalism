@@ -19,8 +19,8 @@
     <div id="chatbox">
       <h1>Chat</h1>
       <div id="messages"></div>
-      <input id="chat-input" placeholder="Type message here..."><br><br>
-      <button onclick="closeChat()">Close</button>
+      <input id="chat-input" placeholder="Type message here..." autocomplete="off"> <button id="send" onclick="sendMessage()">Send</button><br><br>
+      <button onclick="closeChat()">Close</button><br><br>
     </div>
     <canvas id="canvas"></canvas>
     <script src="/socket.io/socket.io.js"></script>
