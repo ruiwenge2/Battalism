@@ -55,8 +55,8 @@ const socketfunc = socket => {
   socket.on("move", (direction, room) => {
     try {
       users[room].move(direction, socket.id);
-    } catch(err){
-      console.log(err);
+    } catch(e){
+      console.log(e);
     }
   });
 
