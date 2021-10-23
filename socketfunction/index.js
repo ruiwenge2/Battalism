@@ -32,24 +32,21 @@ const socketfunc = socket => {
       socket.emit("error", "Your username cannot be longer than 15 characters.");
       return socket.disconnect();
     }
-    if(!true){ // for now
+    /* if(!true){ // for now
       socket.emit("error", "Your username has been taken in this room.");
-      socket.disconnect();
-    } else {
-      socket.join(room);
-      let id = socket.id;
-      users[room].addPlayer(id, user, weapon, width, height);
-      console.log(users[room].players[getUser(room, id)]);
-      socket.emit("error", false);
-      socket.broadcast.to(room).emit("joined", user);
-      console.log(users);
-      if(users[room].players.length >= 6){
-        io.emit("removeroom", room);
-      } else if(users[room].players.length == 1){
-        io.emit("newroom", room);
-      }
+      return socket.disconnect();
+    }*/
+    socket.join(room);
+    let id = socket.id;
+    users[room].addPlayer(id, user, weapon, width, height);
+    socket.emit("error", false);
+    socket.broadcast.to(room).emit("joined", user);
+    console.log(`${user} joined the room ${room}`)
+    if(users[room].players.length >= 6){
+      io.emit("removeroom", room);
+    } else if(users[room].players.length == 1){
+      io.emit("newroom", room);
     }
-    console.log(users[room]);
   });
 
   socket.on("move", (direction, room) => {
@@ -89,10 +86,8 @@ const socketfunc = socket => {
 
   socket.on("disconnect", () => {
     if(!userInRooms(socket.id)) return;
-    console.log("left");
     let room = getRoomOfUser(socket.id);
     users[room].removePlayer(socket.id);
-    console.log(users);
     if(users[room].players.length == 0){
       io.emit("removeroom", room);
     } else if(users[room].players.length == 5){

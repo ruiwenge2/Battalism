@@ -28,7 +28,9 @@ class Room {
     });
   }
   removePlayer(id){
-    this.players.splice(getUser(this.room, id), 1);
+    let num = getUser(this.room, id);
+    console.log(`${this.players[num].name} left the room ${this.room}`);
+    this.players.splice(num, 1);
   }
   generateRocks(){
     for(let i = 0; i < random(10, 30); i++){
