@@ -6,7 +6,7 @@ body {
 }
 #canvas {
   background-image:url(/img/block.png);
-  background-size:75px 75px;
+  background-size:85px 85px;
 }
 #sidebar {
   position:absolute;
