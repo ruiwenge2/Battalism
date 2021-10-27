@@ -4,7 +4,7 @@ function update(data){
   document.querySelector("#players h1").innerHTML = "Players";
   let { players, rocks, swords, arrows } = data;
   for(let info of rocks){
-    let [ x, y, size ] = info;
+    let { x, y, size } = info;
     c.beginPath();
     c.arc(x, y, size, 0, 2 * Math.PI);
     c.fillStyle = "gray";
