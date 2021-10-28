@@ -7,6 +7,7 @@ window.onfocus = function(){
 
 function chat(){
   chatbox.style.display = "block";
+  input.focus();
 }
 function closeChat(){
   chatbox.style.display = "none";
