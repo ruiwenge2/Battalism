@@ -67,4 +67,9 @@ window.addEventListener("click", e => {
   socket.emit("useweapon", angle);
 });
 
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
 showMessage("Loading...", 1);

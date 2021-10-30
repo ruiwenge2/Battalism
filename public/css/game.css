@@ -5,7 +5,15 @@ body {
   color:white;
 }
 #canvas {
-  background:green;
+  background:#22a34b;
+}
+#map {
+  position:absolute;
+  
+  right:0;
+  bottom:0;
+  z-index:100;
+  background:black;
 }
 #sidebar {
   position:absolute;
