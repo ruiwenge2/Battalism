@@ -5,8 +5,7 @@ body {
   color:white;
 }
 #canvas {
-  background-image:url(/img/block.png);
-  background-size:85px 85px;
+  background:green;
 }
 #sidebar {
   position:absolute;

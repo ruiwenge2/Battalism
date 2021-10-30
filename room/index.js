@@ -11,23 +11,33 @@ class Room {
     this.rocks = [];
     this.swords = [];
     this.arrows = [];
+    this.lines = [];
+    for(let i = 0; i <= game_width; i += game_width / 10){
+      this.lines.push({
+        first:[i, 0],
+        next:[i, game_height]
+      });
+    }
+    for(let i = 0; i <= game_height; i += game_height / 10){
+      this.lines.push({
+        first:[0, i],
+        next:[game_height, i]
+      });
+    }
+    console.log(this.lines)
   }
-  addPlayer(id, user, weapon, width, height){
+  addPlayer(id, user, weapon){
     this.players.push({
       id:id,
       name:user,
-      x:random(radius, width - radius),
-      y:random(radius, height - radius),
+      x:random(radius, game_width - radius),
+      y:random(radius, game_height - radius),
       weapon:weapon,
       health:100,
-      cwidth:width,
-      cheight:height,
-      direction:"none",
       left:false,
       right:false,
       up:false,
       down:false,
-      side:randomDirection(),
       times:weapon_limits[weapon],
       useweapon:true,
       timeleft:0
@@ -39,7 +49,7 @@ class Room {
     this.players.splice(num, 1);
   }
   generateRocks(){
-    for(let i = 0; i < random(10, 30); i++){
+    for(let i = 0; i < random(60, 100); i++){
       this.rocks.push(new Rock());
     }
   }
@@ -93,7 +103,7 @@ class Room {
       }
     }
   }
-  useWeapon(id){
+  useWeapon(id, angle){
     let num = getUser(this.room, id);
     let user = this.players[num];
     if(!user.useweapon) return;
@@ -106,9 +116,9 @@ class Room {
       return;
     }
     if(user.weapon == "arrow"){
-      this.arrows.push(new Arrow(this.room, id));
+      this.arrows.push(new Arrow(this.room, id, angle));
     } else {
-      this.swords.push(new Sword(this.room, id));
+      this.swords.push(new Sword(this.room, id, angle));
     }
     this.players[num].useweapon = false;
     this.players[num].timeleft = weapon_interval;

@@ -2,7 +2,7 @@ const { checkSwordForHits, checkArrowForHits } = require("./check");
 const { getUser } = require("../game/functions");
 
 class Sword {
-  constructor(room, id){
+  constructor(room, id, angle){
     this.room = room;
     let user = users[this.room].players[getUser(room, id)];
     this.userid = id;
@@ -49,40 +49,28 @@ class Sword {
 }
 
 class Arrow {
-  constructor(room, id){
+  constructor(room, id, angle){
     this.room = room;
     let user = users[this.room].players[getUser(room, id)];
     this.userid = user.id;
     this.out = false;
     this.direction = user.side;
     this.user = user.name;
-    if(this.direction == "left"){
-      this.x = user.x - radius;
-      this.y = user.y;
-    } else if(this.direction == "right"){
-      this.x = user.x + radius;
-      this.y = user.y;
-    } else if(this.direction == "up"){
-      this.x = user.x;
-      this.y = user.y - radius;
-    } else if(this.direction == "down"){
-      this.x = user.x;
-      this.y = user.y + radius;
-    }
+    this.xspeed = Math.cos(angle) * arrow_speed;
+    this.yspeed = Math.sin(angle) * arrow_speed;
+    this.x = user.x + this.xspeed;
+    this.y = user.y + this.yspeed;
+    this.xbefore = user.x;
+    this.ybefore = user.y;
   }
   update(){
     if(!checkArrowForHits(this.room, this)){
       this.out = true;
     }
-    if(this.direction == "left"){
-      this.x -= arrow_speed;
-    } else if(this.direction == "right"){
-      this.x += arrow_speed;
-    } else if(this.direction == "up"){
-      this.y -= arrow_speed;
-    } else if(this.direction == "down"){
-      this.y += arrow_speed;
-    }
+    this.x += this.xspeed;
+    this.y += this.yspeed;
+    this.xbefore = this.x - this.xspeed;
+    this.ybefore = this.y - this.yspeed;
   }
 }
 

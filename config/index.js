@@ -4,16 +4,16 @@ global.speed = 11;
 global.radius = 30;
 global.min_rock_size = 20;
 global.max_rock_size = 100;
-global.rock_boundary = 1500;
-global.arrow_speed = 50;
+global.arrow_speed = 40;
 global.sword_length = 30;
 global.weapon_limits = { sword:12, arrow:15 };
 global.arrow_damage = 15;
 global.sword_damage = 25;
 global.weapon_interval = 25;
-global.arrow_length = 40;
 global.sword_length = 40;
 global.max_user_length = 15;
+global.game_width = 2000;
+global.game_height = 2000;
 
 global.allchars = [
   "a", "b", "c", "d", "e", "f", "g", "h", "i",

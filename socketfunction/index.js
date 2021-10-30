@@ -32,13 +32,9 @@ const socketfunc = socket => {
       socket.emit("error", "Your username cannot be longer than 15 characters.");
       return socket.disconnect();
     }
-    /* if(!true){ // for now
-      socket.emit("error", "Your username has been taken in this room.");
-      return socket.disconnect();
-    }*/
     socket.join(room);
     let id = socket.id;
-    users[room].addPlayer(id, user, weapon, width, height);
+    users[room].addPlayer(id, user, weapon);
     socket.emit("error", false);
     socket.broadcast.to(room).emit("joined", user);
     console.log(`${user} joined the room ${room}`)
@@ -65,11 +61,11 @@ const socketfunc = socket => {
     }
   });
 
-  socket.on("useweapon", () => {
+  socket.on("useweapon", angle => {
     try {
-      users[getRoomOfUser(socket.id)].useWeapon(socket.id);
+      users[getRoomOfUser(socket.id)].useWeapon(socket.id, angle);
     } catch(e){
-      console.log(e)
+      console.log(e);
     }
   });
 

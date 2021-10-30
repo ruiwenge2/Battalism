@@ -29,7 +29,7 @@ module.exports.checkSwordForHits = function(room, sword){
   }
 
   for(let j of rocks){
-    let [ x, y, size ] = j;
+    let { x, y, size } = j;
     if(dir == "left"){
       if(sword.x - sword_length < x + size && sword.x - sword_length > x - size && sword.y + sword_length > y - size && sword.y - sword_length < y + size) return false;
     } else if(dir == "right"){
@@ -47,44 +47,28 @@ module.exports.checkSwordForHits = function(room, sword){
 module.exports.checkArrowForHits = function(room, arrow){
   let { players, rocks } = users[room];
   let dir = arrow.direction;
-  if(arrow.x < 0 || arrow.x > rock_boundary || arrow.y < 0 || arrow.y > rock_boundary){
+  if(arrow.x < 0 || arrow.x > game_width || arrow.y < 0 || arrow.y > game_height){
     return false;
   }
 
   for(let i of players){
-    if(dir == "left"){
-      if(arrow.x - arrow_speed - arrow_length < i.x + radius && arrow.x - arrow_speed - arrow_length > i.x - radius && arrow.y + arrow_length > i.y - radius && arrow.y - arrow_length < i.y + radius){
-        shootArrow(i, arrow);
-        return false;
-      }
-    } else if(dir == "right"){
-      if(arrow.x + arrow_speed + arrow_length > i.x - radius && arrow.x + arrow_speed + arrow_length < i.x + radius && arrow.y + arrow_length > i.y - radius && arrow.y - arrow_length < i.y + radius){
-        shootArrow(i, arrow);
-        return false;
-      }
-    } else if(dir == "up"){
-      if(arrow.x + arrow_length > i.x - radius && arrow.x - arrow_length < i.x + radius && arrow.y - arrow_speed - arrow_length < i.y + radius && arrow.y - arrow_speed - arrow_length > i.y - radius){
-        shootArrow(i, arrow);
-        return false;
-      }
-    } else if(dir == "down"){
-      if(arrow.x + arrow_length > i.x - radius && arrow.x - arrow_length < i.x + radius && arrow.y + arrow_speed + arrow_length > i.y - radius && arrow.y + arrow_speed + arrow_length < i.y + radius){
-        shootArrow(i, arrow);
-        return false;
-      }
+    if(i.id == arrow.userid) continue;
+    if(i.x < arrow.x &&
+      i.x + radius * 2 > arrow.x &&
+      i.y < arrow.y &&
+      radius * 2 + i.y > arrow.y){
+      shootArrow(i, arrow);
+      return false;
     }
   }
 
   for(let j of rocks){
-    let [ x, y, size ] = j;
-    if(dir == "left"){
-      if(arrow.x - arrow_speed - arrow_length < x + size && arrow.x - arrow_speed - arrow_length > x - size && arrow.y + arrow_length > y - size && arrow.y - arrow_length < y + size) return false;
-    } else if(dir == "right"){
-      if(arrow.x + arrow_speed + arrow_length > x - size && arrow.x + arrow_speed + arrow_length < x + size && arrow.y + arrow_length > y - size && arrow.y - arrow_length < y + size) return false;
-    } else if(dir == "up"){
-      if(arrow.x + arrow_length > x - size && arrow.x - arrow_length < x + size && arrow.y - arrow_speed - arrow_length < y + size && arrow.y - arrow_speed - arrow_length > y - size) return false;
-    } else if(dir == "down"){
-      if(arrow.x + arrow_length > x - size && arrow.x - arrow_length < x + size && arrow.y + arrow_speed + arrow_length > y - size && arrow.y + arrow_speed + arrow_length < y + size) return false;
+    let { x, y, size } = j;
+    if(x < arrow.x &&
+      x + size * 2 > arrow.x &&
+      y < arrow.y &&
+      size * 2 + y > arrow.y){
+      return false;
     }
   }
   

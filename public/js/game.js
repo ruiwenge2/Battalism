@@ -54,13 +54,15 @@ document.addEventListener("keydown", e => {
   else if(e.key == "ArrowDown" || e.key == "s"){
     socket.emit("move", "down", room);
   }
-  else if(e.code == "Space"){
-    socket.emit("useweapon");
-  }
 });
 
 document.addEventListener("keyup", e => {
   socket.emit("releasekey", room);
+});
+
+canvas.addEventListener("click", e => {
+  var angle = Math.atan2(e.clientY - (canvas.height / 2), e.clientX - (canvas.width / 2));
+  socket.emit("useweapon", angle);
 });
 
 showMessage("Loading...", 1);

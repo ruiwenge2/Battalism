@@ -2,7 +2,15 @@ function update(data){
   c.clearRect(0, 0, canvas.width, canvas.height);
   usersdiv.innerHTML = "";
   document.querySelector("#players h1").innerHTML = "Players";
-  let { players, rocks, swords, arrows } = data;
+  let { lines, players, rocks, swords, arrows } = changeView(data);
+
+  for(let info of lines){
+    c.beginPath();
+    c.moveTo(info.first[0], info.first[1]);
+    c.lineTo(info.next[0], info.next[1]);
+    c.stroke();
+    console.log(lines)
+  }
   for(let info of rocks){
     let { x, y, size } = info;
     c.beginPath();
@@ -24,17 +32,8 @@ function update(data){
   }
   for(let arrow of arrows){
     c.beginPath();
-    c.moveTo(arrow.x, arrow.y);
-    let direction = arrow.direction;
-    if(direction == "left"){
-      c.lineTo(arrow.x - arrow_length, arrow.y);
-    } else if(direction == "right"){
-      c.lineTo(arrow.x + arrow_length, arrow.y);
-    } else if(direction == "up"){
-      c.lineTo(arrow.x, arrow.y - arrow_length);
-    } else if(direction == "down"){
-      c.lineTo(arrow.x, arrow.y + arrow_length);
-    }
+    c.moveTo(arrow.xbefore, arrow.ybefore);
+    c.lineTo(arrow.x, arrow.y);
     c.stroke();
   }
   for(let sword of swords){
