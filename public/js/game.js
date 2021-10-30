@@ -60,7 +60,9 @@ document.addEventListener("keyup", e => {
   socket.emit("releasekey", room);
 });
 
-canvas.addEventListener("click", e => {
+window.addEventListener("click", e => {
+  if(e.target == document.getElementById("chatbox") || e.target == document.getElementById("chat-btn") || e.target == document.getElementById("chat-input") || e.target == document.getElementById("send") || e.target == document.getElementById("close-chat")) return;
+  if(!focus) return;
   var angle = Math.atan2(e.clientY - (canvas.height / 2), e.clientX - (canvas.width / 2));
   socket.emit("useweapon", angle);
 });

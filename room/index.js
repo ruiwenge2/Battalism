@@ -24,7 +24,6 @@ class Room {
         next:[game_height, i]
       });
     }
-    console.log(this.lines)
   }
   addPlayer(id, user, weapon){
     this.players.push({
