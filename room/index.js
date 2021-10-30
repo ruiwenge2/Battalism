@@ -34,6 +34,7 @@ class Room {
       y:random(radius, game_height - radius),
       weapon:weapon,
       health:100,
+      side:randomDirection(),
       left:false,
       right:false,
       up:false,
@@ -134,7 +135,7 @@ class Room {
       }
     }
     for(let i = 0; i < this.swords.length; i++){
-      if(this.swords[i].time >= 10){
+      if(this.swords[i].time >= 25){
         this.swords.splice(i, 1);
       } else {
         this.swords[i].update();

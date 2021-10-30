@@ -38,17 +38,8 @@ function update(data){
   }
   for(let sword of swords){
     c.beginPath();
-    c.moveTo(sword.x, sword.y);
-    let direction = sword.direction;
-    if(direction == "left"){
-      c.lineTo(sword.x - arrow_length, sword.y);
-    } else if(direction == "right"){
-      c.lineTo(sword.x + arrow_length, sword.y);
-    } else if(direction == "up"){
-      c.lineTo(sword.x, sword.y - arrow_length);
-    } else if(direction == "down"){
-      c.lineTo(sword.x, sword.y + arrow_length);
-    }
+    c.moveTo(sword.xbefore, sword.ybefore);
+    c.lineTo(sword.x, sword.y);
     c.stroke();
   }
 }

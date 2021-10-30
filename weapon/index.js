@@ -11,35 +11,20 @@ class Sword {
     this.user = user.name;
     this.time = 0;
     this.hit = false;
-    if(this.direction == "left"){
-      this.x = user.x - radius;
-      this.y = user.y;
-    } else if(this.direction == "right"){
-      this.x = user.x + radius;
-      this.y = user.y;
-    } else if(this.direction == "up"){
-      this.x = user.x;
-      this.y = user.y - radius;
-    } else if(this.direction == "down"){
-      this.x = user.x;
-      this.y = user.y + radius;
-    }
+    this.angle = angle;
+    this.xchange = Math.cos(angle) * sword_length;
+    this.ychange = Math.sin(angle) * sword_length;
+    this.xbefore = user.x + Math.cos(angle) * radius;
+    this.ybefore = user.y + Math.sin(angle) * radius;
+    this.x = this.xbefore + this.xchange;
+    this.y = this.ybefore + this.ychange;
   }
   update(){
     let user = users[this.room].players[getUser(room, this.userid)];
-    if(this.direction == "left"){
-      this.x = user.x - radius;
-      this.y = user.y;
-    } else if(this.direction == "right"){
-      this.x = user.x + radius;
-      this.y = user.y;
-    } else if(this.direction == "up"){
-      this.x = user.x;
-      this.y = user.y - radius;
-    } else if(this.direction == "down"){
-      this.x = user.x;
-      this.y = user.y + radius;
-    }
+    this.xbefore = user.x + Math.cos(this.angle) * radius;
+    this.ybefore = user.y + Math.sin(this.angle) * radius;
+    this.x = this.xbefore + this.xchange;
+    this.y = this.ybefore + this.ychange;
     this.time++;
     if(this.hit) return;
     if(!checkSwordForHits(this.room, this)){
@@ -58,10 +43,10 @@ class Arrow {
     this.user = user.name;
     this.xspeed = Math.cos(angle) * arrow_speed;
     this.yspeed = Math.sin(angle) * arrow_speed;
-    this.x = user.x + this.xspeed;
-    this.y = user.y + this.yspeed;
-    this.xbefore = user.x;
-    this.ybefore = user.y;
+    this.xbefore = user.x + Math.cos(angle) * radius;
+    this.ybefore = user.y + Math.sin(angle) * radius;
+    this.x = this.xbefore + this.xspeed;
+    this.y = this.ybefore + this.yspeed;
   }
   update(){
     if(!checkArrowForHits(this.room, this)){

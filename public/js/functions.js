@@ -53,6 +53,8 @@ function changeView(data){
     i.y = i.y - selfy + canvas.height / 2;
   }
   for(let i of data.swords){
+    i.xbefore = i.xbefore - selfx + canvas.width / 2;
+    i.ybefore = i.ybefore - selfy + canvas.height / 2;
     i.x = i.x - selfx + canvas.width / 2;
     i.y = i.y - selfy + canvas.height / 2;
   }
