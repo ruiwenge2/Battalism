@@ -19,7 +19,7 @@ function update(data){
     c.arc(x, y, size, 0, 2 * Math.PI);
     c.fillStyle = "gray";
     c.strokeStyle = "#5f6661";
-    c.lineWidth = "5";
+    c.lineWidth = "3";
     c.fill();
     c.stroke();
   }

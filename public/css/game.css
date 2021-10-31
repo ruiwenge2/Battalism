@@ -9,11 +9,10 @@ body {
 }
 #map {
   position:absolute;
-  
-  right:0;
-  bottom:0;
+  right:20px;
+  bottom:20px;
   z-index:100;
-  background:black;
+  background:rgba(0,0,0, 0.7);
 }
 #sidebar {
   position:absolute;

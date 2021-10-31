@@ -49,7 +49,7 @@ class Room {
     this.players.splice(num, 1);
   }
   generateRocks(){
-    for(let i = 0; i < random(60, 100); i++){
+    for(let i = 0; i < random(40, 80); i++){
       this.rocks.push(new Rock());
     }
   }
