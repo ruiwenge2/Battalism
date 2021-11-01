@@ -23,7 +23,7 @@ function drawMap(data){
     if(info.id == socket.id){
       m.fillStyle = "red";
     } else {
-      m.fillStyle = "white";
+      m.fillStyle = "blue";
     }
     m.fill();
   }
