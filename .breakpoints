@@ -24,12 +24,20 @@
         "index": 1791
       }
     ],
+    "public/js/game.js": [
+      {
+        "id": "eaafe466-e28a-42f8-8c92-2064af7d13f8",
+        "line": 42,
+        "version": 3829,
+        "index": 1125
+      }
+    ],
     "socketfunction/index.js": [
       {
         "id": "72d7f638-3191-4dbc-bb28-e90762273de5",
-        "line": 95,
-        "version": 389,
-        "index": 2669
+        "line": 96,
+        "version": 417,
+        "index": 2704
       }
     ]
   }

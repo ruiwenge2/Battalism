@@ -3,14 +3,14 @@ function update(data){
   usersdiv.innerHTML = "";
   document.querySelector("#players h1").innerHTML = "Players";
   drawMap(data);
-  let { lines, players, rocks, swords, arrows } = changeView(data);
+  let { lines, players, rocks, swords, arrows, gold } = changeView(data);
 
   for(let info of lines){
     c.beginPath();
     c.moveTo(info.first[0], info.first[1]);
     c.lineTo(info.next[0], info.next[1]);
     c.lineWidth = "1";
-    c.strokeStyle = "black";
+    c.strokeStyle = "white";
     c.stroke();
   }
   for(let info of rocks){
@@ -22,6 +22,19 @@ function update(data){
     c.lineWidth = "3";
     c.fill();
     c.stroke();
+  }
+  for(let info of gold){
+    let { value, x, y, size } = info;
+    c.beginPath();
+    c.arc(x, y, size, 0, 2 * Math.PI);
+    c.fillStyle = "gold";
+    c.strokeStyle = "yellow";
+    c.lineWidth = "3";
+    c.fill();
+    c.stroke();
+    c.fillStyle = "black";
+    c.font = "14px Arial";
+    c.fillText(value, x - 3, y + 3);
   }
   for(let info of players){
     c.beginPath();

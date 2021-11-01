@@ -51,3 +51,17 @@ module.exports.checkBottom = function(room, id){
   }
   return true;
 }
+
+module.exports.checkForGold = function(room, id){
+  var info = users[room].players[getUser(room, id)];
+  for(let i = 0; i < users[room].gold.length; i++){
+    let { x, y, size, value } = users[room].gold[i];
+    if(x - size < info.x + radius &&
+      x + size > info.x -  radius &&
+      y - size < info.y + radius&&
+      y + size > info.y - radius){
+      return { value:value, index:i };
+    }
+  }
+  return false;
+}

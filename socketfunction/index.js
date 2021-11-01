@@ -9,6 +9,7 @@ const socketfunc = socket => {
     if(!(room in users)){
       users[room] = new Room(room);
       users[room].generateRocks();
+      users[room].generateGold();
     }
     if(!user){
       socket.emit("error", "Please enter a username.");
@@ -57,7 +58,7 @@ const socketfunc = socket => {
     try {
       users[room].release(socket.id);
     } catch(e){
-      console.log(e)
+      console.log(e);
     }
   });
 
