@@ -1,7 +1,11 @@
 const express = require("express");
 const app = express();
 const server = require("http").Server(app);
-global.io = require("socket.io")(server);
+global.io = require("socket.io")(server, {
+  allowRequest: (req, callback) => {
+    callback(null, req.headers.origin === undefined);
+  }
+});
 app.use(express.static("public"));
 
 const socketfunc = require("../socketfunction");

@@ -58,9 +58,9 @@ const socketfunc = socket => {
     }
   });
 
-  socket.on("releasekey", room => {
+  socket.on("releasekey", (key, room) => {
     try {
-      users[room].release(socket.id);
+      users[room].release(key, socket.id);
     } catch(e){
       console.log(e);
     }

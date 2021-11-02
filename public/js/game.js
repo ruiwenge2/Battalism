@@ -63,20 +63,27 @@ document.addEventListener("keydown", e => {
   let key = e.key.toLowerCase();
   if(key == "arrowright" || key == "d"){
     socket.emit("move", "right", room);
-  }
-  else if(key == "arrowleft" || key == "a"){
+  } else if(key == "arrowleft" || key == "a"){
     socket.emit("move", "left", room);
-  }
-  else if(key == "arrowup" || key == "w"){
+  } else if(key == "arrowup" || key == "w"){
     socket.emit("move", "up", room);
-  }
-  else if(key == "arrowdown" || key == "s"){
+  } else if(key == "arrowdown" || key == "s"){
     socket.emit("move", "down", room);
   }
 });
 
 document.addEventListener("keyup", e => {
-  socket.emit("releasekey", room);
+  if(document.activeElement == input) return;
+  let key = e.key.toLowerCase();
+  if(key == "arrowright" || key == "d"){
+    socket.emit("releasekey", "right", room);
+  } else if(key == "arrowleft" || key == "a"){
+    socket.emit("releasekey", "left", room);
+  } else if(key == "arrowup" || key == "w"){
+    socket.emit("releasekey", "up", room);
+  } else if(key == "arrowdown" || key == "s"){
+    socket.emit("releasekey", "down", room);
+  }
 });
 
 window.addEventListener("click", e => {

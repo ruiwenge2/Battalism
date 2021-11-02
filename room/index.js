@@ -60,105 +60,131 @@ class Room {
     }
   }
   move(direction, id){
-    this.players[getUser(this.room, id)].direction = direction;
-    this.players[getUser(this.room, id)].side = direction;
-    if(direction == "right"){
-      this.players[getUser(this.room, id)].right = true;
-      this.players[getUser(this.room, id)].left = false;
-    }
-    if(direction == "left"){
-      this.players[getUser(this.room, id)].left = true;
-      this.players[getUser(this.room, id)].right = false;
-    }
-    if(direction == "up"){
-      this.players[getUser(this.room, id)].up = true;
-      this.players[getUser(this.room, id)].down = false;
-    }
-    if(direction == "down"){
-      this.players[getUser(this.room, id)].down = true;
-      this.players[getUser(this.room, id)].up = false;
+    try {
+      this.players[getUser(this.room, id)].direction = direction;
+      this.players[getUser(this.room, id)].side = direction;
+      if(direction == "right"){
+        this.players[getUser(this.room, id)].right = true;
+        this.players[getUser(this.room, id)].left = false;
+      }
+      if(direction == "left"){
+        this.players[getUser(this.room, id)].left = true;
+        this.players[getUser(this.room, id)].right = false;
+      }
+      if(direction == "up"){
+        this.players[getUser(this.room, id)].up = true;
+        this.players[getUser(this.room, id)].down = false;
+      }
+      if(direction == "down"){
+        this.players[getUser(this.room, id)].down = true;
+        this.players[getUser(this.room, id)].up = false;
+      }
+    } catch(e){
+      console.log(e);
     }
   }
-  release(id){
-    this.players[getUser(this.room, id)].direction = "none";
-    this.players[getUser(this.room, id)].right = false;
-    this.players[getUser(this.room, id)].left = false;  this.players[getUser(this.room, id)].up = false;
-    this.players[getUser(this.room, id)].down = false;
+  release(key, id){
+    try {
+      // this.players[getUser(this.room, id)].direction = "none";
+      if(key == "right"){
+        this.players[getUser(this.room, id)].right = false;
+      } else if(key == "left"){
+        this.players[getUser(this.room, id)].left = false;
+      } else if(key == "up"){
+        this.players[getUser(this.room, id)].up = false;
+      } else if(key == "down"){
+        this.players[getUser(this.room, id)].down = false;
+      }
+    } catch(e){
+      console.log(e);
+    }
   }
   updatePositions(){
-    for(let user of this.players){
-      if(user.right){
-        if(checkRight(this.room, user.id)) this.players[getUser(this.room, user.id)].x += speed;
+    try {
+      for(let user of this.players){
+        if(user.right){
+          if(checkRight(this.room, user.id)) this.players[getUser(this.room, user.id)].x += speed;
+        }
+        if(user.left){
+          if(checkLeft(this.room, user.id)) this.players[getUser(this.room, user.id)].x -= speed;
+        }
+        if(user.up){
+          if(checkTop(this.room, user.id)) this.players[getUser(this.room, user.id)].y -= speed;
+        }
+        if(user.down){
+          if(checkBottom(this.room, user.id)) this.players[getUser(this.room, user.id)].y += speed;
+        }
+        if(checkForGold(this.room, user.id)){
+          let { value, index } = checkForGold(this.room, user.id);
+          this.gold.splice(index, 1);
+          user.times += value;
+          io.to(user.id).emit("moretimes", value, user.times);
+          for(let i = 0; i < random(0, 2); i++){
+            this.gold.push(new Gold());
+          }
+        }
       }
-      if(user.left){
-        if(checkLeft(this.room, user.id)) this.players[getUser(this.room, user.id)].x -= speed;
+    
+      for(let i = 0; i < this.players.length; i++){
+        if(this.players[i].timeleft > 0){
+          this.players[i].timeleft -= 2;
+        } else if(this.players[i].timeleft <= 0){
+          this.players[i].useweapon = true;
+        }
       }
-      if(user.up){
-        if(checkTop(this.room, user.id)) this.players[getUser(this.room, user.id)].y -= speed;
-      }
-      if(user.down){
-        if(checkBottom(this.room, user.id)) this.players[getUser(this.room, user.id)].y += speed;
-      }
-      if(checkForGold(this.room, user.id)){
-        let { value, index } = checkForGold(this.room, user.id);
-        this.gold.splice(index, 1);
-        user.times += value;
-        io.to(user.id).emit("moretimes", value, user.times);
-        for(let i = 0; i < random(0, 2); i++){
+      if(this.gold.length <= 0){
+        for(let i = 0; i < random(1, 5); i++){
           this.gold.push(new Gold());
         }
       }
-    }
-    
-    for(let i = 0; i < this.players.length; i++){
-      if(this.players[i].timeleft > 0){
-        this.players[i].timeleft -= 2;
-      } else if(this.players[i].timeleft <= 0){
-        this.players[i].useweapon = true;
-      }
-    }
-    if(this.gold.length <= 0){
-      for(let i = 0; i < random(1, 5); i++){
-        this.gold.push(new Gold());
-      }
+    } catch(e){
+      console.log(e)
     }
   }
   useWeapon(id, angle){
-    let num = getUser(this.room, id);
-    let user = this.players[num];
-    if(!user.useweapon) return;
-    if(user.times <= 0){
-      if(user.weapon == "arrow"){
-        io.to(id).emit("noweapon", "You don't have any arrows left.");
-      } else {
-        io.to(id).emit("noweapon", "You can't use your sword anymore.");
+    try {
+      let num = getUser(this.room, id);
+      let user = this.players[num];
+      if(!user.useweapon) return;
+      if(user.times <= 0){
+        if(user.weapon == "arrow"){
+          io.to(id).emit("noweapon", "You don't have any arrows left.");
+        } else {
+          io.to(id).emit("noweapon", "You can't use your sword anymore.");
+        }
+        return;
       }
-      return;
+      if(user.weapon == "arrow"){
+        this.arrows.push(new Arrow(this.room, id, angle));
+      } else {
+        this.swords.push(new Sword(this.room, id, angle));
+      }
+      this.players[num].useweapon = false;
+      this.players[num].timeleft = weapon_interval;
+      this.players[num].times -= 1;
+      io.to(id).emit("timesleft", this.players[num].times);
+    } catch(e){
+      console.log(e);
     }
-    if(user.weapon == "arrow"){
-      this.arrows.push(new Arrow(this.room, id, angle));
-    } else {
-      this.swords.push(new Sword(this.room, id, angle));
-    }
-    this.players[num].useweapon = false;
-    this.players[num].timeleft = weapon_interval;
-    this.players[num].times -= 1;
-    io.to(id).emit("timesleft", this.players[num].times);
   }
   updateWeapons(){
-    for(let i = 0; i < this.arrows.length; i++){
-      if(this.arrows[i].out){
-        this.arrows.splice(i, 1);
-      } else {
-        this.arrows[i].update();
+    try {
+      for(let i = 0; i < this.arrows.length; i++){
+        if(this.arrows[i].out){
+          this.arrows.splice(i, 1);
+        } else {
+          this.arrows[i].update();
+        }
       }
-    }
-    for(let i = 0; i < this.swords.length; i++){
-      if(this.swords[i].time >= 25){
-        this.swords.splice(i, 1);
-      } else {
-        this.swords[i].update();
+      for(let i = 0; i < this.swords.length; i++){
+        if(this.swords[i].time >= 25){
+          this.swords.splice(i, 1);
+        } else {
+          this.swords[i].update();
+        }
       }
+    } catch(e){
+      console.log(e);
     }
   }
 }
