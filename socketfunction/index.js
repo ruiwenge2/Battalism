@@ -80,7 +80,7 @@ const socketfunc = socket => {
       let weapon = info.weapon == "arrow" ? "sword":"arrow";
       let weapon_text = info.weapon == "arrow" ? "a sword":"bow and arrows";
       users[getRoomOfUser(socket.id)].players[getUser(getRoomOfUser(socket.id), socket.id)].weapon = weapon;
-      socket.emit("weaponswitch", weapon_text);
+      socket.emit("weaponswitch", weapon, weapon_text);
     } catch(e){
       console.log(e);
     }

@@ -143,7 +143,7 @@ class Room {
     this.players[num].useweapon = false;
     this.players[num].timeleft = weapon_interval;
     this.players[num].times -= 1;
-    io.to(id).emit("timesleft", this.players[num].times, user.weapon);
+    io.to(id).emit("timesleft", this.players[num].times);
   }
   updateWeapons(){
     for(let i = 0; i < this.arrows.length; i++){

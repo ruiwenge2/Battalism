@@ -23,7 +23,7 @@ socket.on("sword_hit", async user => {
   await showMessage2(`You stabbed ${user}.`, 1);
 });
 
-socket.on("timesleft", async (num, weapon) => {
+socket.on("timesleft", async num => {
   if(weapon == "arrow"){
     await showMessage(`Arrows left: ${num}`, 1);
   } else {
@@ -43,7 +43,9 @@ socket.on("moretimes", async (num, total) => {
   }
 });
 
-socket.on("weaponswitch", async text => {
+socket.on("weaponswitch", async (weaponname, text) => {
+  localStorage.setItem("weapon", weaponname);
+  weapon = weaponname;
   await showMessage(`You weapon has been switched to ${text}.`, 1);
 });
 
