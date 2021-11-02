@@ -1,4 +1,4 @@
-socket.emit("check", user, room, weapon, canvas.width, canvas.height);
+socket.emit("check", user, room, weapon);
 
 socket.on("gamestate", update);
 
@@ -43,6 +43,10 @@ socket.on("moretimes", async (num, total) => {
   }
 });
 
+socket.on("weaponswitch", async text => {
+  await showMessage(`You weapon has been switched to ${text}.`, 1);
+});
+
 socket.on("noweapon", async message => {
   await showMessage(message, 1);
 });
@@ -74,7 +78,7 @@ document.addEventListener("keyup", e => {
 });
 
 window.addEventListener("click", e => {
-  if(e.target == document.getElementById("chatbox") || e.target == document.getElementById("chat-btn") || e.target == input || e.target == document.getElementById("send") || e.target == document.getElementById("close-chat")) return;
+  if(e.target == document.getElementById("chatbox") || e.target == document.getElementById("chat-btn") || e.target == document.getElementById("switch-weapon") || e.target == input || e.target == document.getElementById("send") || e.target == document.getElementById("close-chat")) return;
   if(!focus) return;
   var angle = Math.atan2(e.clientY - (canvas.height / 2), e.clientX - (canvas.width / 2));
   socket.emit("useweapon", angle);
@@ -84,5 +88,9 @@ window.addEventListener("resize", () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 });
+
+function switchWeapon(){
+  socket.emit("switchweapon", room);
+}
 
 showMessage("Loading...", 1);

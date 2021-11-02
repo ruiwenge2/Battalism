@@ -14,6 +14,12 @@ body {
   z-index:100;
   background:rgba(0,0,0, 0.7);
 }
+button {
+  background:rgba(230, 232, 235, 0.8);
+}
+button:hover {
+  background:rgba(218, 221, 224, 0.8);
+}
 #sidebar {
   position:absolute;
   float:left;
