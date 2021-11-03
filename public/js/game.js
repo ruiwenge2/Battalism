@@ -7,8 +7,8 @@ socket.on("error", err => {
   else alertmodal("", err).then(() => location.href = "/");
 });
 
-socket.on("server_error", () => {
-  location.reload();
+socket.on("leave", () => {
+  location.href = "/";
 });
 
 socket.on("hit_by_arrow", async user => {

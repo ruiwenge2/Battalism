@@ -46,35 +46,39 @@ const socketfunc = socket => {
         io.emit("newroom", room);
       }
     } catch(e){
-      socket.emit("server_error");
+      socket.emit("leave");
     }
   });
 
   socket.on("move", (direction, room) => {
+    if(!userInRooms(socket.id)) return socket.emit("leave");
     try {
       users[room].move(direction, socket.id);
     } catch(e){
-      socket.emit("server_error");
+      socket.emit("leave");
     }
   });
 
   socket.on("releasekey", (key, room) => {
+    if(!userInRooms(socket.id)) return socket.emit("leave");
     try {
       users[room].release(key, socket.id);
     } catch(e){
-      socket.emit("server_error");
+      socket.emit("leave");
     }
   });
 
   socket.on("useweapon", angle => {
+    if(!userInRooms(socket.id)) return socket.emit("leave");
     try {
       users[getRoomOfUser(socket.id)].useWeapon(socket.id, angle);
     } catch(e){
-      socket.emit("server_error");
+      socket.emit("leave");
     }
   });
 
   socket.on("switchweapon", () => {
+    if(!userInRooms(socket.id)) return socket.emit("leave");
     try {
       let info = users[getRoomOfUser(socket.id)].players[getUser(getRoomOfUser(socket.id), socket.id)];
       let weapon = info.weapon == "arrow" ? "sword":"arrow";
@@ -82,29 +86,31 @@ const socketfunc = socket => {
       users[getRoomOfUser(socket.id)].players[getUser(getRoomOfUser(socket.id), socket.id)].weapon = weapon;
       socket.emit("weaponswitch", weapon, weapon_text);
     } catch(e){
-      socket.emit("server_error");
+      socket.emit("leave");
     }
   });
 
   socket.on("lost", () => {
+    if(!userInRooms(socket.id)) return socket.emit("leave");
     try {socket.disconnect();}
-    catch(e){socket.emit("server_error");}
+    catch(e){socket.emit("leave");}
   });
 
   socket.on("chat message", message => {
+    if(!userInRooms(socket.id)) return socket.emit("leave");
     try {
       let id = socket.id;
       let room = getRoomOfUser(id);
       let user = users[room].players[getUser(room, id)].name;
       io.to(room).emit("chat message", user, filter.clean(message));
     } catch(e){
-      socket.emit("server_error");
+      socket.emit("leave");
     }
   });
 
   socket.on("disconnect", () => {
     try {
-      if(!userInRooms(socket.id)) return;
+      if(!userInRooms(socket.id)) return socket.emit("leave");
       let room = getRoomOfUser(socket.id);
       users[room].removePlayer(socket.id);
       if(users[room].players.length == 0){
@@ -113,7 +119,7 @@ const socketfunc = socket => {
         io.emit("newroom", room);
       }
     } catch(e){
-      socket.emit("server_error");
+      socket.emit("leave");
     }
   });
 }

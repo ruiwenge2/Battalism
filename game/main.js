@@ -12,7 +12,7 @@ const socketfunc = require("../socketfunction");
 const update = require("./update");
 const { getAvailableRooms } = require("./functions");
 require("../config");
-var __dirname = "/home/runner/Game";
+var __dirname = require("../dirname");
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");

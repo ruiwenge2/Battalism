@@ -80,7 +80,7 @@ class Room {
         this.players[getUser(this.room, id)].up = false;
       }
     } catch(e){
-      io.to(id).emit("server_error");
+      io.to(id).emit("error");
     }
   }
   release(key, id){
@@ -95,12 +95,12 @@ class Room {
         this.players[getUser(this.room, id)].down = false;
       }
     } catch(e){
-      io.to(id).emit("server_error");
+      io.to(id).emit("error");
     }
   }
   updatePositions(){
-    try {
-      for(let user of this.players){
+    for(let user of this.players){
+      try {
         if(user.right){
           if(checkRight(this.room, user.id)) this.players[getUser(this.room, user.id)].x += speed;
         }
@@ -122,22 +122,22 @@ class Room {
             this.gold.push(new Gold());
           }
         }
+      } catch(e){
+        io.to(user.id).emit("leave");
       }
-    
-      for(let i = 0; i < this.players.length; i++){
-        if(this.players[i].timeleft > 0){
-          this.players[i].timeleft -= 2;
-        } else if(this.players[i].timeleft <= 0){
-          this.players[i].useweapon = true;
-        }
+    }
+  
+    for(let i = 0; i < this.players.length; i++){
+      if(this.players[i].timeleft > 0){
+        this.players[i].timeleft -= 2;
+      } else if(this.players[i].timeleft <= 0){
+        this.players[i].useweapon = true;
       }
-      if(this.gold.length <= 0){
-        for(let i = 0; i < random(1, 5); i++){
-          this.gold.push(new Gold());
-        }
+    }
+    if(this.gold.length <= 0){
+      for(let i = 0; i < random(1, 5); i++){
+        this.gold.push(new Gold());
       }
-    } catch(e){
-      console.log(e);
     }
   }
   useWeapon(id, angle){
@@ -163,7 +163,7 @@ class Room {
       this.players[num].times -= 1;
       io.to(id).emit("timesleft", this.players[num].times);
     } catch(e){
-      io.to(id).emit("server_error");
+      io.to(id).emit("error");
     }
   }
   updateWeapons(){

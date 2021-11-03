@@ -27,9 +27,9 @@
     "public/js/game.js": [
       {
         "id": "eaafe466-e28a-42f8-8c92-2064af7d13f8",
-        "line": 42,
-        "version": 4242,
-        "index": 1086
+        "line": 46,
+        "version": 4290,
+        "index": 1146
       }
     ],
     "socketfunction/index.js": [
