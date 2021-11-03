@@ -1,9 +1,11 @@
 function showMessage(message, time){
+  if(prevent) return;
   let div = document.getElementById("message");
   div.style.opacity = "1";
   div.innerHTML = message;
   return new Promise(function(resolve, reject){
     setTimeout(function(){
+      if(prevent) return;
       div.style.opacity = "0";
       resolve();
     }, time * 1000);
@@ -23,6 +25,7 @@ function showMessage2(message, time){
 }
 
 function showMessage3(message){
+  prevent = true;
   let div = document.getElementById("message");
   div.style.opacity = "1";
   div.innerHTML = message;

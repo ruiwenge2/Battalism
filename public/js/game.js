@@ -59,7 +59,7 @@ socket.on("noweapon", async message => {
 
 socket.on("lost", async () => {
   socket.emit("lost");
-  await showMessage3(`You lost all your health.<br><br><button onclick="location.href = '/'">OK</button>`);
+  showMessage3(`You lost all your health.<br><br><button onclick="location.href = '/'">OK</button>`);
 });
 
 document.addEventListener("keydown", e => {

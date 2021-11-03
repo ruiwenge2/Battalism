@@ -167,23 +167,27 @@ class Room {
     }
   }
   updateWeapons(){
-    try {
-      for(let i = 0; i < this.arrows.length; i++){
+    for(let i = 0; i < this.arrows.length; i++){
+      try {
         if(this.arrows[i].out){
           this.arrows.splice(i, 1);
         } else {
           this.arrows[i].update();
         }
+      } catch(e){
+        this.arrows.splice(i, 1);
       }
-      for(let i = 0; i < this.swords.length; i++){
+    }
+    for(let i = 0; i < this.swords.length; i++){
+      try {
         if(this.swords[i].time >= 25){
           this.swords.splice(i, 1);
         } else {
           this.swords[i].update();
         }
+      } catch(e){
+        this.swords.splice(i, 1);
       }
-    } catch(e){
-      console.log(e);
     }
   }
 }
