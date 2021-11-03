@@ -46,7 +46,7 @@ const socketfunc = socket => {
         io.emit("newroom", room);
       }
     } catch(e){
-      console.log(e);
+      socket.emit("server_error");
     }
   });
 
@@ -54,7 +54,7 @@ const socketfunc = socket => {
     try {
       users[room].move(direction, socket.id);
     } catch(e){
-      console.log(e);
+      socket.emit("server_error");
     }
   });
 
@@ -62,7 +62,7 @@ const socketfunc = socket => {
     try {
       users[room].release(key, socket.id);
     } catch(e){
-      console.log(e);
+      socket.emit("server_error");
     }
   });
 
@@ -70,7 +70,7 @@ const socketfunc = socket => {
     try {
       users[getRoomOfUser(socket.id)].useWeapon(socket.id, angle);
     } catch(e){
-      console.log(e);
+      socket.emit("server_error");
     }
   });
 
@@ -82,13 +82,13 @@ const socketfunc = socket => {
       users[getRoomOfUser(socket.id)].players[getUser(getRoomOfUser(socket.id), socket.id)].weapon = weapon;
       socket.emit("weaponswitch", weapon, weapon_text);
     } catch(e){
-      console.log(e);
+      socket.emit("server_error");
     }
   });
 
   socket.on("lost", () => {
     try {socket.disconnect();}
-    catch(e){console.log(e);}
+    catch(e){socket.emit("server_error");}
   });
 
   socket.on("chat message", message => {
@@ -98,7 +98,7 @@ const socketfunc = socket => {
       let user = users[room].players[getUser(room, id)].name;
       io.to(room).emit("chat message", user, filter.clean(message));
     } catch(e){
-      console.log(e);
+      socket.emit("server_error");
     }
   });
 
@@ -113,7 +113,7 @@ const socketfunc = socket => {
         io.emit("newroom", room);
       }
     } catch(e){
-      console.log(e);
+      socket.emit("server_error");
     }
   });
 }

@@ -5,7 +5,7 @@ const update = () => {
       users[room].updatePositions();
       users[room].updateWeapons();
     }
-  }, 40);
+  }, 1000 / 30);
 }
 
 module.exports = update;

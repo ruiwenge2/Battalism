@@ -80,12 +80,11 @@ class Room {
         this.players[getUser(this.room, id)].up = false;
       }
     } catch(e){
-      console.log(e);
+      io.to(id).emit("server_error");
     }
   }
   release(key, id){
     try {
-      // this.players[getUser(this.room, id)].direction = "none";
       if(key == "right"){
         this.players[getUser(this.room, id)].right = false;
       } else if(key == "left"){
@@ -96,7 +95,7 @@ class Room {
         this.players[getUser(this.room, id)].down = false;
       }
     } catch(e){
-      console.log(e);
+      io.to(id).emit("server_error");
     }
   }
   updatePositions(){
@@ -138,7 +137,7 @@ class Room {
         }
       }
     } catch(e){
-      console.log(e)
+      console.log(e);
     }
   }
   useWeapon(id, angle){
@@ -164,7 +163,7 @@ class Room {
       this.players[num].times -= 1;
       io.to(id).emit("timesleft", this.players[num].times);
     } catch(e){
-      console.log(e);
+      io.to(id).emit("server_error");
     }
   }
   updateWeapons(){

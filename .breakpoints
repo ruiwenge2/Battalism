@@ -3,9 +3,9 @@
     "game/main.js": [
       {
         "id": "8b3c9940-ae52-4b17-aa37-e0eebbaf1b4f",
-        "line": 5,
-        "version": 801,
-        "index": 145
+        "line": 9,
+        "version": 841,
+        "index": 245
       }
     ],
     "game/move.js": [
@@ -28,7 +28,7 @@
       {
         "id": "eaafe466-e28a-42f8-8c92-2064af7d13f8",
         "line": 42,
-        "version": 4176,
+        "version": 4242,
         "index": 1086
       }
     ],
@@ -36,8 +36,8 @@
       {
         "id": "72d7f638-3191-4dbc-bb28-e90762273de5",
         "line": 121,
-        "version": 878,
-        "index": 3491
+        "version": 903,
+        "index": 3607
       }
     ]
   }

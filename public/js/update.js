@@ -28,7 +28,7 @@ function update(data){
     c.beginPath();
     c.arc(x, y, size, 0, 2 * Math.PI);
     c.fillStyle = "gold";
-    c.strokeStyle = "yellow";
+    c.strokeStyle = "goldenrod";
     c.lineWidth = "3";
     c.fill();
     c.stroke();
@@ -61,6 +61,7 @@ function update(data){
     c.moveTo(sword.xbefore, sword.ybefore);
     c.lineTo(sword.x, sword.y);
     c.lineWidth = "5";
+    c.strokeStyle = "dimgray";
     c.stroke();
   }
 }

@@ -7,6 +7,10 @@ socket.on("error", err => {
   else alertmodal("", err).then(() => location.href = "/");
 });
 
+socket.on("server_error", () => {
+  location.reload();
+});
+
 socket.on("hit_by_arrow", async user => {
   await showMessage2(`${user} shot you with an arrow.`, 2);
 });
