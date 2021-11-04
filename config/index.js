@@ -1,6 +1,6 @@
 global.users = {};
 global.max = 6;
-global.speed = 11;
+global.speed = 10;
 global.radius = 30;
 global.min_rock_size = 30;
 global.max_rock_size = 75;
