@@ -7,8 +7,8 @@ socket.on("error", err => {
   else alertmodal("", err).then(() => location.href = "/");
 });
 
-socket.on("leave", () => {
-  location.href = "/";
+socket.on("leave", async () => {
+  await showMessage3(`You got disconnected.<br><br><button onclick="location.href = '/'">OK</button>`);
 });
 
 socket.on("hit_by_arrow", async user => {
@@ -59,7 +59,7 @@ socket.on("noweapon", async message => {
 
 socket.on("lost", async () => {
   socket.emit("lost");
-  showMessage3(`You lost all your health.<br><br><button onclick="location.href = '/'">OK</button>`);
+  await showMessage3(`You lost all your health.<br><br><button onclick="location.href = '/'">OK</button>`);
 });
 
 document.addEventListener("keydown", e => {

@@ -113,6 +113,7 @@ const socketfunc = socket => {
       if(!userInRooms(socket.id)) return socket.emit("leave");
       let room = getRoomOfUser(socket.id);
       users[room].removePlayer(socket.id);
+      socket.emit("leave");
       if(users[room].players.length == 0){
         io.emit("removeroom", room);
       } else if(users[room].players.length == 5){
