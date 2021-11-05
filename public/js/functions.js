@@ -73,3 +73,7 @@ function changeView(data){
   }
   return data;
 }
+
+function sortPlayers(data){
+  data.players.sort(function(a, b){return b.health - a.health});
+}

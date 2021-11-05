@@ -3,7 +3,9 @@ function update(data){
   usersdiv.innerHTML = "";
   document.querySelector("#players h1").innerHTML = "Players";
   drawMap(data);
+  sortPlayers(data);
   let { lines, players, rocks, swords, arrows, gold } = changeView(data);
+  let place = 1;
 
   for(let info of lines){
     c.beginPath();
@@ -46,8 +48,9 @@ function update(data){
     c.fillStyle = "white";
     c.font = "14px Arial";
     c.fillText(info.name, info.x - info.name.length * 3.5, info.y);
-    usersdiv.innerText += `${info.name}, ${info.health} health`;
+    usersdiv.innerText += `${place}. ${info.name}, ${info.health} health`;
     usersdiv.innerHTML += "<br>";
+    place++;
   }
   for(let arrow of arrows){
     c.beginPath();
