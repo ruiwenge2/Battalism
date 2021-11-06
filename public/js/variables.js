@@ -12,6 +12,7 @@ var input = document.getElementById("chat-input");
 var messages = document.getElementById("messages");
 var focus = true;
 var prevent = false;
+var canvas_focused = true;
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;

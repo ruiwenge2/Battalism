@@ -18,6 +18,8 @@ class Sword {
     this.ybefore = user.y + Math.sin(angle) * radius;
     this.x = this.xbefore + this.xchange;
     this.y = this.ybefore + this.ychange;
+    this.midx = this.xbefore + this.xchange / 2;
+    this.midy = this.ybefore + this.ychange / 2;
   }
   update(){
     let user = users[this.room].players[getUser(room, this.userid)];

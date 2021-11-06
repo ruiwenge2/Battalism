@@ -12,6 +12,13 @@ module.exports.checkSwordForHits = function(room, sword){
       useSword(i, sword);
       return false;
     }
+    if(i.x - radius < sword.midx &&
+      i.x + radius > sword.midx &&
+      i.y - radius < sword.midy &&
+      i.y + radius > sword.midy){
+      useSword(i, sword);
+      return false;
+    }
   }
   return true;
 }
