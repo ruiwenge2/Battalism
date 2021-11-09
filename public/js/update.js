@@ -41,11 +41,12 @@ function update(data){
   for(let info of players){
     c.beginPath();
     c.arc(info.x, info.y, radius, 0, 2 * Math.PI);
-    c.fillStyle = "black";
+    c.fillStyle = "#e3ba7f";
     c.fill();
     c.strokeStyle = "black";
+    c.lineWidth = "2";
     c.stroke();
-    c.fillStyle = "white";
+    c.fillStyle = "black";
     c.font = "14px Arial";
     c.fillText(info.name, info.x - info.name.length * 3.5, info.y);
     usersdiv.innerText += `${place}. ${info.name}, ${info.health} health`;
@@ -56,6 +57,7 @@ function update(data){
     c.beginPath();
     c.moveTo(arrow.xbefore, arrow.ybefore);
     c.lineTo(arrow.x, arrow.y);
+    c.strokeStyle = "black";
     c.lineWidth = "1";
     c.stroke();
   }

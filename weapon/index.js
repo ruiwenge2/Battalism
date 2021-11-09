@@ -41,23 +41,24 @@ class Arrow {
     let user = users[this.room].players[getUser(room, id)];
     this.userid = user.id;
     this.out = false;
+    this.angle = angle;
     this.direction = user.side;
     this.user = user.name;
     this.xspeed = Math.cos(angle) * arrow_speed;
     this.yspeed = Math.sin(angle) * arrow_speed;
     this.xbefore = user.x + Math.cos(angle) * radius;
     this.ybefore = user.y + Math.sin(angle) * radius;
-    this.x = this.xbefore + this.xspeed;
-    this.y = this.ybefore + this.yspeed;
+    this.x = this.xbefore + Math.cos(angle) * arrow_length;
+    this.y = this.ybefore + Math.sin(angle) * arrow_length;
   }
   update(){
     if(!checkArrowForHits(this.room, this)){
       this.out = true;
     }
-    this.x += this.xspeed;
-    this.y += this.yspeed;
-    this.xbefore = this.x - this.xspeed;
-    this.ybefore = this.y - this.yspeed;
+    this.xbefore += this.xspeed;
+    this.ybefore += this.yspeed;
+    this.x = this.xbefore + Math.cos(this.angle) * arrow_length;
+    this.y = this.ybefore + Math.sin(this.angle) * arrow_length;
   }
 }
 

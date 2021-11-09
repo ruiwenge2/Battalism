@@ -1,5 +1,5 @@
 function drawMap(data){
-  const ratio = 2000 / map.width;
+  const ratio = 2500 / map.width;
   m.clearRect(0, 0, map.width, map.height);
   let { rocks, players, gold } = data;
 
