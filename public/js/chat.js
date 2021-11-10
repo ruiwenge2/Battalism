@@ -1,9 +1,11 @@
 window.onblur = function(){
   focus = false;
-}
+  stop();
+};
+
 window.onfocus = function(){
   focus = true;
-}
+};
 
 function chat(){
   chatbox.style.display = "block";

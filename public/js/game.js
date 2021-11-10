@@ -109,6 +109,8 @@ window.addEventListener("resize", () => {
   canvas.height = window.innerHeight;
 });
 
+input.onfocus = stop;
+
 function switchWeapon(){
   socket.emit("switchweapon", room);
 }

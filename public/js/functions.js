@@ -77,3 +77,10 @@ function changeView(data){
 function sortPlayers(data){
   data.players.sort(function(a, b){return b.health - a.health});
 }
+
+function stop(){
+  socket.emit("releasekey", "right", room);
+  socket.emit("releasekey", "left", room);
+  socket.emit("releasekey", "up", room);
+  socket.emit("releasekey", "down", room);
+}
