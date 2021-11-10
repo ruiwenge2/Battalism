@@ -58,7 +58,7 @@ module.exports.checkForGold = function(room, id){
     let { x, y, size, value } = users[room].gold[i];
     if(x - size < info.x + radius &&
       x + size > info.x -  radius &&
-      y - size < info.y + radius&&
+      y - size < info.y + radius &&
       y + size > info.y - radius){
       return { value:value, index:i };
     }
