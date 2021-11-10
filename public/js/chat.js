@@ -9,9 +9,12 @@ function chat(){
   chatbox.style.display = "block";
   input.focus();
   canvas_focused = false;
+  chat_opened = true;
+  document.getElementById("chat-btn").innerHTML = "Chat";
 }
 function closeChat(){
   chatbox.style.display = "none";
+  chat_opened = false;
 }
 
 input.addEventListener("keydown", e => {
@@ -26,6 +29,10 @@ function sendMessage(){
 }
 
 socket.on("chat message", (username, message) => {
+  if(!chat_opened){
+    new_messages++;
+    document.getElementById("chat-btn").innerHTML = `Chat (${new_messages})`;
+  }
   if(!focus){
     document.getElementById("chat-alert").play();
   }

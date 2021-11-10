@@ -13,6 +13,8 @@ var messages = document.getElementById("messages");
 var focus = true;
 var prevent = false;
 var canvas_focused = true;
+var chat_opened = false;
+var new_messages = 0;
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -20,6 +22,6 @@ map.width = 160;
 map.height = 160;
 
 const radius = 30;
-const arrow_length = 40;
+const arrow_length = 50;
 
 localStorage.setItem("room", room);
