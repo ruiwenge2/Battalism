@@ -25,7 +25,7 @@ async function showRooms(){
     allrooms.appendChild(a);
   }
   if(document.getElementsByClassName("room-name").length == 0){
-    change("block");
+    change("no");
   }
 }
 
@@ -40,8 +40,11 @@ function join(){
   location.href += "/game/" + room;
 }
 
-function change(style){
-  document.getElementById("no-room-message").style.display = style;
+function change(text){
+  if(text == "yes") document.getElementById("roomslist-title").innerHTML = "Join these rooms! There are already players in them!";
+  if(text == "no"){
+    document.getElementById("roomslist-title").innerHTML = "Sorry, no one is online. Try joining a room!";
+  }
 }
 
 socket.on("newroom", room => {
@@ -52,12 +55,12 @@ socket.on("newroom", room => {
   a.className = "room-name";
   allrooms.appendChild(a);
   allrooms.scrollTo(0, allrooms.scrollHeight);
-  change("none");
+  change("yes");
 });
 
 socket.on("removeroom", room => {
   document.getElementById("room_" + room).remove();
   if(document.getElementsByClassName("room-name").length == 0){
-    change("block");
+    change("no");
   }
 });

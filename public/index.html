@@ -13,10 +13,8 @@
       Enter weapon: <select id="weapons"><option>Sword</option><option>Bow and Arrows</option></select><br><br>
       <button onclick="join()">Join</button>
       <h2>Click <a href="/howtoplay" id="howtoplay-link">here</a> if you don't know how to play.</h2>
-      <h2 style="margin-top:100px">Here are the available rooms where there are already players in them (updates live):</h2>
-      <div id="rooms">
-        <h3 id="no-room-message">Sorry, there are none. Join a room to start!</h3>
-      </div>
+      <h2 style="margin-top:100px" id="roomslist-title">Join these rooms! There are already players in them!</h2>
+      <div id="rooms"></div>
     </main>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/join.js"></script>
