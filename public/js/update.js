@@ -36,7 +36,7 @@ function update(data){
     c.stroke();
     c.fillStyle = "black";
     c.font = "14px Arial";
-    c.fillText(value, x - 3, y + 3);
+    c.fillText(value, x, y);
   }
   for(let info of players){
     c.beginPath();
@@ -48,7 +48,9 @@ function update(data){
     c.stroke();
     c.fillStyle = "black";
     c.font = "14px Arial";
-    c.fillText(info.name, info.x - info.name.length * 3.5, info.y);
+    c.textAlign = "center";
+    c.textBaseline = "middle";
+    c.fillText(info.name, info.x, info.y);
     usersdiv.innerText += `${place}. ${info.name}, ${info.health} health`;
     usersdiv.innerHTML += "<br>";
     place++;
