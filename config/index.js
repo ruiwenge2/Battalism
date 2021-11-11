@@ -14,6 +14,7 @@ global.weapon_interval = 50;
 global.max_user_length = 15;
 global.game_width = 2500;
 global.game_height = 2500;
+global.connected_ids = [];
 
 global.allchars = [
   "a", "b", "c", "d", "e", "f", "g", "h", "i",

@@ -7,6 +7,8 @@ const { random, getUser, getRoomOfUser, checkUsername, userInRooms } = require("
 const socketfunc = socket => {
   socket.on("check", (user, room, weapon) => {
     try {
+      if(connected_ids.includes(socket.id)) return;
+      connected_ids.push(socket.id);
       if(!(room in users)){
         users[room] = new Room(room);
         users[room].generateRocks();
