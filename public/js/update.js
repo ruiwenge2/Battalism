@@ -60,7 +60,7 @@ function update(data){
     c.moveTo(arrow.xbefore, arrow.ybefore);
     c.lineTo(arrow.x, arrow.y);
     c.strokeStyle = "black";
-    c.lineWidth = "1";
+    c.lineWidth = "2";
     c.stroke();
   }
   for(let sword of swords){
