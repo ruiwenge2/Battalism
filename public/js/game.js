@@ -11,12 +11,12 @@ socket.on("leave", async () => {
   await showMessage3(`You got disconnected.<br><br><button onclick="location.href = '/'">OK</button>`);
 });
 
-socket.on("hit_by_arrow", async user => {
-  await showMessage2(`${user} shot you with an arrow.`, 2);
+socket.on("hit_by_arrow", async (user, health) => {
+  await showMessage2(`${user} shot you with an arrow.<br>Health: ${health}`, 2);
 });
 
-socket.on("hit_by_sword", async user => {
-  await showMessage2(`${user} stabbed you with a sword.`, 1);
+socket.on("hit_by_sword", async (user, health) => {
+  await showMessage2(`${user} stabbed you with a sword.<br>Health: ${health}`, 1);
 });
 
 socket.on("arrow_hit", async user => {
