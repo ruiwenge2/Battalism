@@ -73,6 +73,15 @@ document.addEventListener("keydown", e => {
     socket.emit("move", "up", room);
   } else if(key == "arrowdown" || key == "s"){
     socket.emit("move", "down", room);
+  } else if(key == "f"){
+    let body = document.body;
+    if(body.requestFullscreen){
+      body.requestFullscreen();
+    } else if(body.webkitRequestFullscreen){
+      body.webkitRequestFullscreen();
+    } else if(body.msRequestFullscreen) {
+      body.msRequestFullscreen();
+    }
   }
 });
 
