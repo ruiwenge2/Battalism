@@ -133,6 +133,8 @@ window.addEventListener("resize", () => {
 
 input.onfocus = stop;
 
+window.oncontextmenu = stop;
+
 function switchWeapon(){
   socket.emit("switchweapon", room);
 }
