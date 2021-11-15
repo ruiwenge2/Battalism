@@ -15,6 +15,7 @@ var prevent = false;
 var canvas_focused = true;
 var chat_opened = false;
 var new_messages = 0;
+var full_screen = false;
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
