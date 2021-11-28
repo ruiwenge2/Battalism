@@ -112,7 +112,7 @@ document.addEventListener("keyup", e => {
   }
 });
 
-window.addEventListener("click", e => {
+window.addEventListener("mousedown", e => {
   if(e.target == document.getElementById("chatbox") || e.target == document.getElementById("chat-btn") || e.target == document.getElementById("switch-weapon") || e.target == document.getElementById("send") || e.target == document.getElementById("close-chat")) return;
   if(e.target == input){
     canvas_focused = false;
@@ -124,6 +124,7 @@ window.addEventListener("click", e => {
   }
   var angle = Math.atan2(e.clientY - (canvas.height / 2), e.clientX - (canvas.width / 2));
   socket.emit("useweapon", angle);
+  console.log(angle);
 });
 
 window.addEventListener("resize", () => {
