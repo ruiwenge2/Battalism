@@ -124,7 +124,6 @@ window.addEventListener("mousedown", e => {
   }
   var angle = Math.atan2(e.clientY - (canvas.height / 2), e.clientX - (canvas.width / 2));
   socket.emit("useweapon", angle);
-  console.log(angle);
 });
 
 window.addEventListener("resize", () => {
