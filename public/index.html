@@ -9,7 +9,7 @@
     <main>
       <h1>Battalism - Join Game</h1>
       Enter room: <input type="text" id="room"><br>
-      Enter username: <input type="text" id="username"><br>
+      Enter username: <input type="text" id="username" oninput="localStorage.setItem('username', this.value)"><br>
       Enter weapon: <select id="weapons"><option>Sword</option><option>Bow and Arrows</option></select><br><br>
       <button onclick="join()">Join</button>
       <h2>Click <a href="/howtoplay" id="howtoplay-link">here</a> if you don't know how to play.</h2>
