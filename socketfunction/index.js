@@ -115,9 +115,10 @@ const socketfunc = socket => {
       if(!userInRooms(socket.id)) return socket.emit("leave");
       let room = getRoomOfUser(socket.id);
       users[room].removePlayer(socket.id);
-      socket.emit("leave");
       if(users[room].players.length == 0){
         io.emit("removeroom", room);
+        delete users[room];
+        console.log(`the room ${room} has been removed`);
       } else if(users[room].players.length == 5){
         io.emit("newroom", room);
       }

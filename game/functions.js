@@ -56,6 +56,7 @@ module.exports.getAvailableRooms = function(){
 }
 
 module.exports.shootArrow = function(user, arrow){
+  if(user.health <= 0) return;
   user.health -= arrow_damage;
   io.to(user.id).emit("hit_by_arrow", arrow.user, user.health);
   io.to(arrow.userid).emit("arrow_hit", user.name);
@@ -65,6 +66,7 @@ module.exports.shootArrow = function(user, arrow){
 }
 
 module.exports.useSword = function(user, sword){
+  if(user.health <= 0) return;
   user.health -= sword_damage;
   io.to(user.id).emit("hit_by_sword", sword.user, user.health);
   io.to(sword.userid).emit("sword_hit", user.name);

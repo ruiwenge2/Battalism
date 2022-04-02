@@ -159,7 +159,7 @@ class Room {
         this.swords.push(new Sword(this.room, id, angle));
       }
       this.players[num].useweapon = false;
-      this.players[num].timeleft = weapon_interval;
+      this.players[num].timeleft = weapon_interval * 2;
       this.players[num].times -= 1;
       io.to(id).emit("timesleft", this.players[num].times);
     } catch(e){
