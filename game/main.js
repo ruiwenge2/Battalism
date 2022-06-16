@@ -37,6 +37,6 @@ app.get("/rooms", (req, res) => {
 io.on("connection", socketfunc);
 update();
 
-server.listen(3000, () => {
+server.listen(process.env.PORT || 3000, () => {
   console.log("server started");
 });
