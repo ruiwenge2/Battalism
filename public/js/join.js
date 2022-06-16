@@ -37,7 +37,7 @@ function join(){
   let weapon = document.getElementById("weapons").value;
   localStorage.setItem("username", username);
   localStorage.setItem("weapon", weapon == "Sword" ? "sword": "arrow");
-  location.href += "/game/" + room;
+  location.href = "/game/" + room;
 }
 
 function change(text){
